@@ -1,41 +1,18 @@
-﻿using MVCGarageAngularJS.Models;
-using MVCGarageAngularJS.Repositories;
+﻿using System;
 using System.Collections.Generic;
-using System.Web.Http;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
 
 namespace CodeAlongAJAX.Controllers
 {
-    public class VehicleTypesController : ApiController
+    public class VehicleTypesController : Controller
     {
-        private VehicleTypesRepository db = new VehicleTypesRepository();
-
-        // GET api/values
-        public IEnumerable<VehicleType> Get()
+        public ActionResult Index()
         {
-            return db.VehicleTypes();
-        }
+            ViewBag.Title = "Home Page";
 
-        // GET api/values/5
-        public VehicleType Get(int id)
-        {
-            return db.VehicleType(id);
-        }
-
-        // POST api/values
-        public void Post([FromBody]VehicleType value)
-        {
-            int test = value.Type.Length;
-            //persons.Add(value);
-        }
-
-        // PUT api/values/5
-        public void Put(int id, [FromBody]VehicleType value)
-        {
-        }
-
-        // DELETE api/values/5
-        public void Delete(int id)
-        {
+            return View();
         }
     }
 }
