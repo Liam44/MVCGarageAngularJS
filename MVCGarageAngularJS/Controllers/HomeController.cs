@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace CodeAlongAJAX.Controllers
 {
-    public class VehicleTypesController : Controller
+    public class HomeController : Controller
     {
         public ActionResult Index()
         {

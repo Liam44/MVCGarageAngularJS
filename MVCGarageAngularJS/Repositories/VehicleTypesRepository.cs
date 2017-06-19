@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using MVCGarageAngularJS.DataAccess;
+﻿using MVCGarageAngularJS.DataAccess;
 using MVCGarageAngularJS.Models;
+using System;
+using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 
 namespace MVCGarageAngularJS.Repositories
 {
@@ -19,6 +19,11 @@ namespace MVCGarageAngularJS.Repositories
         public VehicleType VehicleType(int? id)
         {
             return db.VehicleTypes.Find(id);
+        }
+
+        public VehicleType VehicleType(string type)
+        {
+            return VehicleTypes().SingleOrDefault(vt => string.Compare(vt.Type, type, true) == 0);
         }
 
         public void Add(VehicleType type)
