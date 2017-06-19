@@ -1,4 +1,4 @@
-﻿(function(){
+﻿(function () {
     var app = angular.module("vehicleTypes", []);
 
     app.controller("vehicleTypesController", ['$scope', '$http', function ($scope, $http) {
@@ -8,17 +8,16 @@
         $scope.sendData = sendData;
 
         function getData() {
-            $http.get("/api/vehicleTypesapi/get")
+            $http.get("/api/vehicleTypesAPI/get")
             .then(function (response) {
                 $scope.data = response.data
-                debugger;
             });
         }
 
-        $scope.vehicleType = { Type: "", Fee: 0 };
+        $scope.vehicleType = { ID: 0, Type: "", Fee: 0 };
 
         function sendData() {
-            $http.post("/api/vehicleTypesapi/post", JSON.stringify($scope.vehicleType))
+            $http.post("/api/vehicleTypesAPI/post", JSON.stringify($scope.vehicleType))
             .then(function (response) {
                 var tmp = angular.copy($scope.vehicleType);
                 $scope.data.push(tmp);
