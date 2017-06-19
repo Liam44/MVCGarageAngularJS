@@ -26,6 +26,7 @@ namespace MVCGarageAngularJS
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/index-css.css",
                       "~/Content/site.css"));
         }
     }
