@@ -3,7 +3,7 @@
 }
 
 <div ng-app="vehicleTypes" ng-controller="vehicleTypesController">
-    <div class="jumbotron header" ng-init="getData()">
+    <div class="jumbotron header" ng-init="getVehicleTypes()">
         <h1>Vehicle Types</h1>
         <hr />
         <p>This is where you can look at the registered vehicle types.</p>
@@ -23,9 +23,9 @@
                     <td>{{vehicleType.Type}}</td>
                     <td>{{vehicleType.Fee}}</td>
                         <td>
-                            <a href="/VehicleTypes/Edit" ng-model="{{vehicleType.ID}}">Edit</a>
-                            <a href="/VehicleTypes/Details" ng-model="{{vehicleType.ID}}">Details</a>
-                            <a href="/VehicleTypes/Delete" ng-model="{{vehicleType.ID}}">Delete</a>
+                            <a href="/VehicleTypes/Edit?id={{vehicleType.ID}}">Edit</a> | 
+                            <a href="/VehicleTypes/Details?id={{vehicleType.ID}}">Details</a> | 
+                            <a href="/VehicleTypes/Delete?id={{vehicleType.ID}}">Delete</a> | 
                         </td>
                 </tr>
         </table>

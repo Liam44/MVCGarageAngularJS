@@ -250,6 +250,8 @@
     <Content Include="Views\VehicleTypes\Create.cshtml" />
     <Content Include="Views\VehicleTypes\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\VehicleTypes\Details.cshtml" />
+    <Content Include="Views\VehicleTypes\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

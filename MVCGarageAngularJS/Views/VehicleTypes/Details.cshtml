@@ -1,0 +1,55 @@
+﻿@model int?
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="header jumbotron">
+    <h2>Details</h2>
+    <hr />
+    <p>This is where you can view details for a vehicle type</p>
+</div>
+
+@if (Model == null)
+{
+    @Html.DisplayName("No vehicle type found!");
+}
+else
+{
+    <div ng-app="vehicleTypes" ng-controller="vehicleTypesController">
+        <div ng-init="getVehicleType(@Model)">
+            <h1 style="text-align: center; color: white;">Vehicle</h1>
+            <hr />
+            <div class="index-table">
+                <table>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Vehicle Type")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Default Fee")
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            {{vehicleType.Type}}
+                        </td>
+                        <td>
+                            {{vehicleType.Fee}}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div style="text-align:center; display:block; font-size: 2em; margin-bottom: 3em; color: white;">
+            <p>
+                <a href="/VehicleTypes/Edit?vehicleId={{vehicleType.ID}}">Edit</a> |
+            </p>
+        </div>
+    </div>
+}
+
+<div style="text-align:center; display:block; font-size: 2em; margin-bottom: 3em; color: white;">
+    @Html.ActionLink("Back to List", "DisplayAllVehicles", "Garage")
+</div>
