@@ -25,10 +25,10 @@
                     <table>
                         <tr>
                             <th>
-                                @Html.DisplayName("Vehicle Type")
+                                Vehicle Type
                             </th>
                             <th>
-                                @Html.DisplayName("Default Fee")
+                                Default Fee
                             </th>
                         </tr>
                         <tr>
@@ -36,7 +36,7 @@
                                 {{vehicleType.Type}}
                             </td>
                             <td>
-                                {{vehicleType.Fee}}
+                                {{vehicleType.Fee | number:2}} :-
                             </td>
                         </tr>
                     </table>

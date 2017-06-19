@@ -252,6 +252,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\VehicleTypes\Details.cshtml" />
     <Content Include="Views\VehicleTypes\Edit.cshtml" />
+    <Content Include="Views\VehicleTypes\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

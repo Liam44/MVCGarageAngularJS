@@ -15,6 +15,12 @@ namespace CodeAlongAJAX.Controllers
             return View();
         }
 
+        // GET: VehicleTypes/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
         // GET: VehicleTypes/Details/5
         public ActionResult Details(int? id)
         {
@@ -23,6 +29,12 @@ namespace CodeAlongAJAX.Controllers
 
         // GET: VehicleTypes/Edit/5
         public ActionResult Edit(int? id)
+        {
+            return View(id);
+        }
+
+        // GET: VehicleTypes/Delete/5
+        public ActionResult Delete(int? id)
         {
             return View(id);
         }
