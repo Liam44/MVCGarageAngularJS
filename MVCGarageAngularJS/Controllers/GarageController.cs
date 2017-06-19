@@ -39,80 +39,80 @@ namespace MVCGarage.Controllers
             return bookedSpotsVehicles;
         }
 
-        private IEnumerable<Vehicle> Sort(IEnumerable<Vehicle> list, string sortOrder)
-        {
-            ViewBag.RegistrationPlateSortParam = string.IsNullOrEmpty(sortOrder) ? "regnum_desc" : "regnum_asc";
-            ViewBag.OwnerSortParam = sortOrder == "owner_asc" ? "owner_desc" : "owner_asc";
-            ViewBag.VehicleVehicleTypeSortParam = sortOrder == "vehicletype_asc" ? "vehicletype_desc" : "vehicletype_asc";
-            ViewBag.VehicleCheckInTimeSortParam = sortOrder == "checkin_asc" ? "checkin_desc" : "checkin_asc";
-            ViewBag.ParkingSpotSortParam = sortOrder == "spot_asc" ? "spot_desc" : "spot_asc";
-            ViewBag.VehicleFeeSortParam = sortOrder == "fee_asc" ? "fee_desc" : "fee_asc";
+        //private IEnumerable<Vehicle> Sort(IEnumerable<Vehicle> list, string sortOrder)
+        //{
+        //    ViewBag.RegistrationPlateSortParam = string.IsNullOrEmpty(sortOrder) ? "regnum_desc" : "regnum_asc";
+        //    ViewBag.OwnerSortParam = sortOrder == "owner_asc" ? "owner_desc" : "owner_asc";
+        //    ViewBag.VehicleVehicleTypeSortParam = sortOrder == "vehicletype_asc" ? "vehicletype_desc" : "vehicletype_asc";
+        //    ViewBag.VehicleCheckInTimeSortParam = sortOrder == "checkin_asc" ? "checkin_desc" : "checkin_asc";
+        //    ViewBag.ParkingSpotSortParam = sortOrder == "spot_asc" ? "spot_desc" : "spot_asc";
+        //    ViewBag.VehicleFeeSortParam = sortOrder == "fee_asc" ? "fee_desc" : "fee_asc";
 
-            ViewBag.LabelSortParam = sortOrder == "label_asc" ? "label_desc" : "label_asc";
-            ViewBag.AvailableSortParam = sortOrder == "available_asc" ? "available_desc" : "available_asc";
-            ViewBag.VehicleTypeSortParam = sortOrder == "vehicletype_asc" ? "vehicletype_desc" : "vehicletype_asc";
-            ViewBag.FeeSortParam = sortOrder == "fee_asc" ? "fee_desc" : "fee_asc";
+        //    ViewBag.LabelSortParam = sortOrder == "label_asc" ? "label_desc" : "label_asc";
+        //    ViewBag.AvailableSortParam = sortOrder == "available_asc" ? "available_desc" : "available_asc";
+        //    ViewBag.VehicleTypeSortParam = sortOrder == "vehicletype_asc" ? "vehicletype_desc" : "vehicletype_asc";
+        //    ViewBag.FeeSortParam = sortOrder == "fee_asc" ? "fee_desc" : "fee_asc";
 
-            switch (sortOrder)
-            {
-                case "regnum_desc":
-                    list = list.OrderByDescending(v => v.RegistrationPlate);
-                    break;
-                case "vehicletype_asc":
-                    list = list.OrderBy(v => v.VehicleType.Type);
-                    break;
-                case "vehicletype_desc":
-                    list = list.OrderByDescending(v => v.VehicleType.Type);
-                    break;
-                case "owner_asc":
-                    list = list.OrderBy(v => v.Owner);
-                    break;
-                case "owner_desc":
-                    list = list.OrderByDescending(v => v.Owner);
-                    break;
-                case "checkin_asc":
-                    list = new CheckInsVehicles().InnerJoin(list)
-                           .OrderBy(v_ch_p => v_ch_p.CheckIn == null)
-                           .ThenBy(v_ch_p => GetCheckInTime(v_ch_p.CheckIn))
-                           .Select(v_ch_p => v_ch_p.Vehicle);
-                    break;
-                case "checkin_desc":
-                    list = new CheckInsVehicles().InnerJoin(list)
-                           .OrderBy(v_ch_p => v_ch_p.CheckIn == null)
-                           .ThenByDescending(v_ch_p => GetCheckInTime(v_ch_p.CheckIn))
-                           .Select(v_ch_p => v_ch_p.Vehicle);
-                    break;
-                case "spot_asc":
-                    list = new CheckInsVehicles().InnerJoin(list)
-                           .OrderBy(v_ch_p => v_ch_p.CheckIn == null)
-                           .ThenBy(v_ch_p => GetLabel(v_ch_p.ParkingSpot))
-                           .Select(v_ch_p => v_ch_p.Vehicle);
-                    break;
-                case "spot_desc":
-                    list = new CheckInsVehicles().InnerJoin(list)
-                           .OrderBy(v_ch_p => v_ch_p.CheckIn == null)
-                           .ThenByDescending(v_ch_p => GetLabel(v_ch_p.ParkingSpot))
-                           .Select(v_ch_p => v_ch_p.Vehicle);
-                    break;
-                case "fee_asc":
-                    list = new CheckInsVehicles().InnerJoin(list)
-                           .OrderBy(v_ch_p => v_ch_p.CheckIn == null)
-                           .ThenBy(v_ch_p => GetFee(v_ch_p))
-                           .Select(v_ch_p => v_ch_p.Vehicle);
-                    break;
-                case "fee_desc":
-                    list = new CheckInsVehicles().InnerJoin(list)
-                           .OrderBy(v_ch_p => v_ch_p.CheckIn == null)
-                           .ThenByDescending(v_ch_p => GetFee(v_ch_p))
-                           .Select(v_ch_p => v_ch_p.Vehicle);
-                    break;
-                default:
-                    list = list.OrderBy(v => v.RegistrationPlate);
-                    break;
-            }
+        //    switch (sortOrder)
+        //    {
+        //        case "regnum_desc":
+        //            list = list.OrderByDescending(v => v.RegistrationPlate);
+        //            break;
+        //        case "vehicletype_asc":
+        //            list = list.OrderBy(v => v.VehicleType.Type);
+        //            break;
+        //        case "vehicletype_desc":
+        //            list = list.OrderByDescending(v => v.VehicleType.Type);
+        //            break;
+        //        case "owner_asc":
+        //            list = list.OrderBy(v => v.Owner);
+        //            break;
+        //        case "owner_desc":
+        //            list = list.OrderByDescending(v => v.Owner);
+        //            break;
+        //        case "checkin_asc":
+        //            list = new CheckInsVehicles().InnerJoin(list)
+        //                   .OrderBy(v_ch_p => v_ch_p.CheckIn == null)
+        //                   .ThenBy(v_ch_p => GetCheckInTime(v_ch_p.CheckIn))
+        //                   .Select(v_ch_p => v_ch_p.Vehicle);
+        //            break;
+        //        case "checkin_desc":
+        //            list = new CheckInsVehicles().InnerJoin(list)
+        //                   .OrderBy(v_ch_p => v_ch_p.CheckIn == null)
+        //                   .ThenByDescending(v_ch_p => GetCheckInTime(v_ch_p.CheckIn))
+        //                   .Select(v_ch_p => v_ch_p.Vehicle);
+        //            break;
+        //        case "spot_asc":
+        //            list = new CheckInsVehicles().InnerJoin(list)
+        //                   .OrderBy(v_ch_p => v_ch_p.CheckIn == null)
+        //                   .ThenBy(v_ch_p => GetLabel(v_ch_p.ParkingSpot))
+        //                   .Select(v_ch_p => v_ch_p.Vehicle);
+        //            break;
+        //        case "spot_desc":
+        //            list = new CheckInsVehicles().InnerJoin(list)
+        //                   .OrderBy(v_ch_p => v_ch_p.CheckIn == null)
+        //                   .ThenByDescending(v_ch_p => GetLabel(v_ch_p.ParkingSpot))
+        //                   .Select(v_ch_p => v_ch_p.Vehicle);
+        //            break;
+        //        case "fee_asc":
+        //            list = new CheckInsVehicles().InnerJoin(list)
+        //                   .OrderBy(v_ch_p => v_ch_p.CheckIn == null)
+        //                   .ThenBy(v_ch_p => GetFee(v_ch_p))
+        //                   .Select(v_ch_p => v_ch_p.Vehicle);
+        //            break;
+        //        case "fee_desc":
+        //            list = new CheckInsVehicles().InnerJoin(list)
+        //                   .OrderBy(v_ch_p => v_ch_p.CheckIn == null)
+        //                   .ThenByDescending(v_ch_p => GetFee(v_ch_p))
+        //                   .Select(v_ch_p => v_ch_p.Vehicle);
+        //            break;
+        //        default:
+        //            list = list.OrderBy(v => v.RegistrationPlate);
+        //            break;
+        //    }
 
-            return list;
-        }
+        //    return list;
+        //}
 
         private DateTime GetCheckInTime(CheckIn checkIn)
         {
@@ -157,7 +157,6 @@ namespace MVCGarage.Controllers
             return View(new DisplayVehiclesVM
             {
                 ViewName = "DisplayAllVehicles",
-                Vehicles = Sort(vehicles.Vehicles(), sortOrder).ToList(),
                 ParkingSpotsVehicles = dicParkingSpotsVehicles
             });
         }
@@ -182,7 +181,6 @@ namespace MVCGarage.Controllers
             return View(new DisplayVehiclesVM
             {
                 ViewName = "DisplayParkedVehicles",
-                Vehicles = Sort(parkedVehicles, sortOrder).ToList(),
                 ParkingSpotsVehicles = dicParkingSpots
             });
         }
@@ -224,45 +222,45 @@ namespace MVCGarage.Controllers
             return RedirectToAction("VehicleCheckedOut", "CheckIns", new { vehicleId = vehicleId });
         }
 
-        public ActionResult Search(string searchedValue, string sortOrder)
-        {
-            if (string.IsNullOrEmpty(searchedValue))
-                return RedirectToAction("Index");
+        //public ActionResult Search(string searchedValue, string sortOrder)
+        //{
+        //    if (string.IsNullOrEmpty(searchedValue))
+        //        return RedirectToAction("Index");
 
-            List<DetailsParkingSpotVM> foundParkingSpots = new List<DetailsParkingSpotVM>();
-            ParkingSpotsController parkingSpotsController = new ParkingSpotsController();
+        //    List<DetailsParkingSpotVM> foundParkingSpots = new List<DetailsParkingSpotVM>();
+        //    ParkingSpotsController parkingSpotsController = new ParkingSpotsController();
 
-            foreach (ParkingSpot foundParkingSpot in parkingSpotsController.Sort(parkingSpots.ParkingSpotsByIdentifiant(searchedValue), sortOrder))
-            {
-                CheckIn checkIn = checkIns.CheckInByParkingSpot(foundParkingSpot.ID);
+        //    foreach (ParkingSpot foundParkingSpot in parkingSpotsController.Sort(parkingSpots.ParkingSpotsByIdentifiant(searchedValue), sortOrder))
+        //    {
+        //        CheckIn checkIn = checkIns.CheckInByParkingSpot(foundParkingSpot.ID);
 
-                foundParkingSpots.Add(new DetailsParkingSpotVM
-                {
-                    Availability = new CheckInsParkingSpots().Availability(checkIn),
-                    ParkingSpot = foundParkingSpot,
-                    CheckIn = checkIn
-                });
-            }
+        //        foundParkingSpots.Add(new DetailsParkingSpotVM
+        //        {
+        //            Availability = new CheckInsParkingSpots().Availability(checkIn),
+        //            ParkingSpot = foundParkingSpot,
+        //            CheckIn = checkIn
+        //        });
+        //    }
 
-            Dictionary<int, CheckIn> dicParkingSpotsVehicles = new Dictionary<int, CheckIn>();
+        //    Dictionary<int, CheckIn> dicParkingSpotsVehicles = new Dictionary<int, CheckIn>();
 
-            IEnumerable<Vehicle> foundVehicles = Sort(vehicles.VehiclesByRegistrationPlate(searchedValue), sortOrder);
+        //    IEnumerable<Vehicle> foundVehicles = Sort(vehicles.VehiclesByRegistrationPlate(searchedValue), sortOrder);
 
-            foreach (Vehicle vehicle in foundVehicles)
-                dicParkingSpotsVehicles.Add(vehicle.ID, checkIns.CheckInByVehicle(vehicle.ID));
+        //    foreach (Vehicle vehicle in foundVehicles)
+        //        dicParkingSpotsVehicles.Add(vehicle.ID, checkIns.CheckInByVehicle(vehicle.ID));
 
-            return View(new SearchResultsVM
-            {
-                SearchedValue = searchedValue,
-                FoundVehicles = new DisplayVehiclesVM
-                {
-                    ViewName = "Search",
-                    Vehicles = foundVehicles,
-                    ParkingSpotsVehicles = dicParkingSpotsVehicles
-                },
-                FoundParkingSpots = foundParkingSpots
-            });
-        }
+        //    return View(new SearchResultsVM
+        //    {
+        //        SearchedValue = searchedValue,
+        //        FoundVehicles = new DisplayVehiclesVM
+        //        {
+        //            ViewName = "Search",
+        //            Vehicles = foundVehicles,
+        //            ParkingSpotsVehicles = dicParkingSpotsVehicles
+        //        },
+        //        FoundParkingSpots = foundParkingSpots
+        //    });
+        //}
 
         protected override void Dispose(bool disposing)
         {
