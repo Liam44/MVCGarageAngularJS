@@ -19,14 +19,14 @@ namespace MVCGarageAngularJS.Controllers
         private VehiclesRepository db = new VehiclesRepository();
 
         // GET: api/VehiclesControllerAPI
-        public IEnumerable<Vehicle> GetVehicles()
+        public IEnumerable<Vehicle> Get()
         {
             return db.Vehicles();
         }
 
         // GET: api/VehiclesControllerAPI/5
         [ResponseType(typeof(Vehicle))]
-        public IHttpActionResult GetVehicle(int id)
+        public IHttpActionResult Get(int id)
         {
             Vehicle vehicle = db.Vehicle(id);
             if (vehicle == null)
@@ -51,23 +51,7 @@ namespace MVCGarageAngularJS.Controllers
                 return BadRequest();
             }
 
-            db.Entry(vehicle).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!VehicleExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            db.Edit(vehicle);
 
             return StatusCode(HttpStatusCode.NoContent);
         }

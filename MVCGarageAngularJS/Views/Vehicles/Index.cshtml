@@ -1,45 +1,39 @@
-﻿@model IEnumerable<MVCGarageAngularJS.Models.Vehicle>
-
-@{
-    ViewBag.Title = "Index";
+﻿@{
+    ViewBag.Title = "Vehicles";
 }
 
-<h2>Index</h2>
+<div ng-app="vehicles" ng-controller="vehicleController">
+    <div ng-init="getVehicles()">
+        <div class="jumbotron header">
+            <h1>Vehicles</h1>
+            <hr />
+            <p>This is where you can look at the registered vehicles</p>
+        </div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Owner.Fname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VehicleType.Type)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RegistrationPlate)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Owner.Fname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VehicleType.Type)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RegistrationPlate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
-
-</table>
+        <p style="font-size: 2em; text-align: center;">
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <div class="index-table" style="margin-bottom: 3em;">
+            <table>
+                <tr>
+                    @*<th>Owner</th>*@
+                    <th>Reg. Plate</th>
+                    @*<th>Vehicle Type</th>
+                    <th>Checked in</th>*@
+                    <th></th>
+                </tr>
+                <tr ng-repeat="vehicle in data track by $index">
+                    @*<td>{{vehicle.Owner}}</td>*@
+                    <td>{{vehicle.RegistrationPlate}}</td>
+                    @*<td>{{vehicle.VehicleType}}</td>
+                    <td>{{vehicle.CheckIns}}</td>*@
+                    <td>
+                        <a href="/Vehicles/Edit?id={{vehicle.ID}}">Edit</a> |
+                        <a href="/Vehicles/Details?id={{vehicle.ID}}">Details</a> |
+                        <a href="/Vehicles/Delete?id={{vehicle.ID}}">Delete</a> |
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
