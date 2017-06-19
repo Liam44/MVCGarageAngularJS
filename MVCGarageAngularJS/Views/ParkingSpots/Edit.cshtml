@@ -1,0 +1,68 @@
+﻿@model int?
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="form-horizontal about-body-text" style="color: white; font-size: 1em;">
+    <div ng-app="parkingSpots" ng-controller="parkingSpotsController">
+        <div class="header jumbotron">
+            <h1>Edit a Parking Spot</h1>
+            <hr />
+            <p>This is where you edit a parking spot</p>
+            <p style="color:red">{{ ServerResponse }}</p>
+        </div>
+
+        <h2 style="text-align:center;">Parking Spot</h2>
+        <hr />
+
+        @if (Model == null)
+        {
+            <h1 style="text-align: center; color: white;">No parking spot found!</h1>
+        }
+        else
+        {
+            <div ng-init="getParkingSpot(@Model)">
+                <div ng-show="parkingSpot.Label">
+                    <form>
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                @Html.Label("Identifiant", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    <input type="text"
+                                           class="form-control"
+                                           id="parkingSpot.Label"
+                                           placeholder="Enter the new identifiant"
+                                           ng-model="parkingSpot.Label"
+                                           style="width:450px"
+                                           required />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" ng-click="edit(@Model)" value="Edit" class="btn btn-default" />
+                                </div>
+                            </div>
+                            <p style="color:red">{{ ServerResponse }}</p>
+                        </div>
+                    </form>
+                </div>
+
+                <div ng-hide="parkingSpot.Label">
+                    <h1 style="text-align: center; color: white;">No parking spot found!</h1>
+                </div>
+            </div>
+        }
+
+        <div style="text-align:center; display:block; font-size: 2em; margin-bottom: 3em; color: white;">
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

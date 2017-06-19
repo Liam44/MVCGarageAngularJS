@@ -21,7 +21,7 @@ namespace MVCGarageAngularJS.Repositories
             return db.ParkingSpots.Find(id);
         }
 
-        public ParkingSpot ParkingSpotByIdentifiant(string label)
+        public ParkingSpot ParkingSpot(string label)
         {
             return ParkingSpots().SingleOrDefault(p => string.Compare(p.Label, label, StringComparison.InvariantCultureIgnoreCase) == 0);
         }
