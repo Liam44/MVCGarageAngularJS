@@ -1,8 +1,8 @@
-﻿using MVCGarage.Models;
-using MVCGarage.ViewModels.Shared;
+﻿using MVCGarageAngularJS.Models;
+using MVCGarageAngularJS.ViewModels.Shared;
 using System.Collections.Generic;
 
-namespace MVCGarage.ViewModels.Garage
+namespace MVCGarageAngularJS.ViewModels.Garage
 {
     public class SearchResultsVM
     {

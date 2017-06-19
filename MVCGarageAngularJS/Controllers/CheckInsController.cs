@@ -1,7 +1,7 @@
-﻿using MVCGarage.Models;
-using MVCGarage.Repositories;
-using MVCGarage.ViewModels.CheckIns;
-using MVCGarage.ViewModels.ParkingSpots;
+﻿using MVCGarageAngularJS.Models;
+using MVCGarageAngularJS.Repositories;
+using MVCGarageAngularJS.ViewModels.CheckIns;
+using MVCGarageAngularJS.ViewModels.ParkingSpots;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 
-namespace MVCGarage.Controllers
+namespace MVCGarageAngularJS.Controllers
 {
     public class CheckInsController : Controller
     {
@@ -202,7 +202,7 @@ namespace MVCGarage.Controllers
             // Check out the vehicle ID to the parking spot
             DateTime now = DateTime.Now;
             int nbMonths = (int)Math.Truncate((now - (DateTime)checkIn.CheckInTime).TotalDays / 30) + 1;
-            double totalAmount = nbMonths * checkIn.ParkingSpot.MonthlyFee();
+            double totalAmount = nbMonths * checkIn.Vehicle.VehicleType.DefaultFee.MonthlyFee();
 
             checkIn = db.CheckOut(checkIn.ID, now, totalAmount);
 

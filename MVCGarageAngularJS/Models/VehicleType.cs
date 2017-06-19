@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MVCGarage.Models
+namespace MVCGarageAngularJS.Models
 {
     public class VehicleType
     {

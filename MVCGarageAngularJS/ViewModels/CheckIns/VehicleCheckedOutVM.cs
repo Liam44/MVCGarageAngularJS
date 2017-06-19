@@ -1,7 +1,7 @@
-﻿using MVCGarage.Models;
+﻿using MVCGarageAngularJS.Models;
 using System;
 
-namespace MVCGarage.ViewModels.CheckIns
+namespace MVCGarageAngularJS.ViewModels.CheckIns
 {
     public class VehicleCheckedOutVM
     {

@@ -1,9 +1,9 @@
-﻿using MVCGarage.DataAccess;
-using MVCGarage.Models;
+﻿using MVCGarageAngularJS.DataAccess;
+using MVCGarageAngularJS.Models;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
-namespace MVCGarage.Controllers
+namespace MVCGarageAngularJS.Controllers
 {
     public class PopulateSelectLists
     {

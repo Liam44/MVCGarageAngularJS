@@ -1,7 +1,7 @@
-﻿using MVCGarage.Models;
+﻿using MVCGarageAngularJS.Models;
 using System.Collections.Generic;
 
-namespace MVCGarage.ViewModels.ParkingSpots
+namespace MVCGarageAngularJS.ViewModels.ParkingSpots
 {
     public class CreateParkingSpotsVM
     {

@@ -1,4 +1,4 @@
-﻿@model MVCGarage.Models.Vehicle
+﻿@model MVCGarageAngularJS.Models.Vehicle
 
 @{
     ViewBag.Title = "Delete";
@@ -34,7 +34,7 @@
                     @Html.DisplayFor(model => model.Owner)
                 </td>
                 <td>
-                    @Html.DisplayName(MVCGarage.Models.EnumHelper.GetDescriptionAttr(Model.VehicleType))
+                    @Html.DisplayName(MVCGarageAngularJS.Models.EnumHelper.GetDescriptionAttr(Model.VehicleType))
                 </td>
             </tr>
         </table>

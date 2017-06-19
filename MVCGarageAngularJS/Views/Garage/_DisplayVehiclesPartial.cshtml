@@ -1,4 +1,4 @@
-﻿@model MVCGarage.ViewModels.Shared.DisplayVehiclesVM
+﻿@model MVCGarageAngularJS.ViewModels.Shared.DisplayVehiclesVM
 
 <div class="container">
     <div class="index-table">
@@ -27,7 +27,7 @@
             </tr>
             @foreach (var item in Model.Vehicles)
             {
-                MVCGarage.Models.CheckIn checkIn = Model.ParkingSpotsVehicles[item.ID];
+                MVCGarageAngularJS.Models.CheckIn checkIn = Model.ParkingSpotsVehicles[item.ID];
 
                 <tr>
                     <td>

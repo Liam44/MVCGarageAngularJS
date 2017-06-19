@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using MVCGarage.DataAccess;
-using MVCGarage.Models;
+using MVCGarageAngularJS.DataAccess;
+using MVCGarageAngularJS.Models;
 using System.Data.Entity;
 
-namespace MVCGarage.Repositories
+namespace MVCGarageAngularJS.Repositories
 {
     public class VehicleTypesRepository : IDisposable
     {
@@ -16,7 +16,7 @@ namespace MVCGarage.Repositories
             return db.VehicleTypes;
         }
 
-        public VehicleType VehicleID(int? id)
+        public VehicleType VehicleType(int? id)
         {
             return db.VehicleTypes.Find(id);
         }
@@ -29,13 +29,13 @@ namespace MVCGarage.Repositories
 
         public void Delete(int typeId)
         {
-            db.VehicleTypes.Remove(VehicleID(typeId));
+            db.VehicleTypes.Remove(VehicleType(typeId));
             db.SaveChanges();
         }
 
-        public void Edit(VehicleType type)
+        public void Edit(VehicleType vehicleType)
         {
-            db.Entry(type).State = EntityState.Modified;
+            db.Entry(vehicleType).State = EntityState.Modified;
             SaveChanges();
         }
 
@@ -65,6 +65,5 @@ namespace MVCGarage.Repositories
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-
     }
 }

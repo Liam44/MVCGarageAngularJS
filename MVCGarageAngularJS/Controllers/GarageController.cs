@@ -1,14 +1,14 @@
-﻿using MVCGarage.Models;
-using MVCGarage.Repositories;
-using MVCGarage.ViewModels.Garage;
-using MVCGarage.ViewModels.ParkingSpots;
-using MVCGarage.ViewModels.Shared;
+﻿using MVCGarageAngularJS.Models;
+using MVCGarageAngularJS.Repositories;
+using MVCGarageAngularJS.ViewModels.Garage;
+using MVCGarageAngularJS.ViewModels.ParkingSpots;
+using MVCGarageAngularJS.ViewModels.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
-namespace MVCGarage.Controllers
+namespace MVCGarageAngularJS.Controllers
 {
     public class GarageController : Controller
     {
@@ -135,7 +135,7 @@ namespace MVCGarage.Controllers
             if (innerJoin.CheckIn == null)
                 return 0;
             else if (innerJoin.CheckIn.Booked)
-                return innerJoin.ParkingSpot.MonthlyFee();
+                return innerJoin.Vehicle.VehicleType.DefaultFee.MonthlyFee();
             else
                 return innerJoin.Vehicle.VehicleType.DefaultFee.Fee;
         }

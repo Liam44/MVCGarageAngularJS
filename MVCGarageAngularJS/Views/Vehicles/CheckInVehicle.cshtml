@@ -1,4 +1,4 @@
-﻿@model MVCGarage.ViewModels.Vehicles.SelectAVehicleVM
+﻿@model MVCGarageAngularJS.ViewModels.Vehicles.SelectAVehicleVM
 
 @{
     ViewBag.Title = "Check In A Vehicle";
@@ -13,7 +13,7 @@
 <p style="font-size: 3em; text-align: center; color: white;">
     @Html.ActionLink("Add a new vehicle",
                      "Create",
-                     new MVCGarage.ViewModels.Vehicles.CreateVehicleVM
+                     new MVCGarageAngularJS.ViewModels.Vehicles.CreateVehicleVM
                      {
                          OriginActionName = "CheckInVehicle"
                      })

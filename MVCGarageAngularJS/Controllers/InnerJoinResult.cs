@@ -1,6 +1,6 @@
-﻿using MVCGarage.Models;
+﻿using MVCGarageAngularJS.Models;
 
-namespace MVCGarage.Controllers
+namespace MVCGarageAngularJS.Controllers
 {
     public class InnerJoinResult
     {

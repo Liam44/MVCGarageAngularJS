@@ -1,6 +1,6 @@
-﻿using MVCGarage.Models;
+﻿using MVCGarageAngularJS.Models;
 
-namespace MVCGarage.ViewModels.Vehicles
+namespace MVCGarageAngularJS.ViewModels.Vehicles
 {
     public class CreateVehicleVM
     {

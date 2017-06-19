@@ -1,7 +1,7 @@
-﻿using MVCGarage.Models;
+﻿using MVCGarageAngularJS.Models;
 using System.Collections.Generic;
 
-namespace MVCGarage.ViewModels.Vehicles
+namespace MVCGarageAngularJS.ViewModels.Vehicles
 {
     public class SelectAVehicleVM
     {

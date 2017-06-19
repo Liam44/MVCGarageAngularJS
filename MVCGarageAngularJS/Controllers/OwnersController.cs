@@ -6,12 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using MVCGarage.DataAccess;
-using MVCGarage.Models;
-using MVCGarage.Repositories;
-using MVCGarage.ViewModels.Shared;
+using MVCGarageAngularJS.DataAccess;
+using MVCGarageAngularJS.Models;
+using MVCGarageAngularJS.Repositories;
+using MVCGarageAngularJS.ViewModels.Shared;
 
-namespace MVCGarage.Controllers
+namespace MVCGarageAngularJS.Controllers
 {
     public class OwnersController : Controller
     {

@@ -1,19 +1,19 @@
 namespace MVCGarageAngularJS.Migrations
 {
-    using MVCGarage.Models;
+    using MVCGarageAngularJS.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<MVCGarage.DataAccess.GarageContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<MVCGarageAngularJS.DataAccess.GarageContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(MVCGarage.DataAccess.GarageContext context)
+        protected override void Seed(MVCGarageAngularJS.DataAccess.GarageContext context)
         {
             #region Instantiating
 
@@ -59,13 +59,6 @@ namespace MVCGarageAngularJS.Migrations
             motorcycleFee.VehicleType = motorcycle;
             truckFee.VehicleType = truck;
             busFee.VehicleType = bus;
-
-            p1.Fee = carFee.Fee;
-            p2.Fee = carFee.Fee;
-            p3.Fee = motorcycleFee.Fee;
-            p4.Fee = motorcycleFee.Fee;
-            p5.Fee = truckFee.Fee;
-            p6.Fee = busFee.Fee;
 
             v1.VehicleType = car;
             v1.Owner = Mike;

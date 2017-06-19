@@ -1,6 +1,6 @@
-﻿using MVCGarage.Models;
+﻿using MVCGarageAngularJS.Models;
 
-namespace MVCGarage.ViewModels.Shared
+namespace MVCGarageAngularJS.ViewModels.Shared
 {
     public class DetailsParkingSpotVM
     {

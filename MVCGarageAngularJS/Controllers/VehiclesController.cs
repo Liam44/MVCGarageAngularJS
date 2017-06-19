@@ -1,13 +1,13 @@
-﻿using MVCGarage.Models;
-using MVCGarage.Repositories;
-using MVCGarage.ViewModels.ParkingSpots;
-using MVCGarage.ViewModels.Vehicles;
+﻿using MVCGarageAngularJS.Models;
+using MVCGarageAngularJS.Repositories;
+using MVCGarageAngularJS.ViewModels.ParkingSpots;
+using MVCGarageAngularJS.ViewModels.Vehicles;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 
-namespace MVCGarage.Controllers
+namespace MVCGarageAngularJS.Controllers
 {
     public class VehiclesController : Controller
     {

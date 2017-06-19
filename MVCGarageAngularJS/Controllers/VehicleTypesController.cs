@@ -6,19 +6,21 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using MVCGarage.DataAccess;
-using MVCGarage.Models;
+using MVCGarageAngularJS.DataAccess;
+using MVCGarageAngularJS.Models;
+using MVCGarageAngularJS.ViewModels.VehicleTypes;
+using MVCGarageAngularJS.Repositories;
 
-namespace MVCGarage.Controllers
+namespace MVCGarageAngularJS.Controllers
 {
     public class VehicleTypesController : Controller
     {
-        private GarageContext db = new GarageContext();
+        private VehicleTypesRepository db = new VehicleTypesRepository();
 
         // GET: VehicleTypes
         public ActionResult Index()
         {
-            return View(db.VehicleTypes.ToList());
+            return View(db.VehicleTypes());
         }
 
         // GET: VehicleTypes/Details/5
@@ -28,7 +30,7 @@ namespace MVCGarage.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            VehicleType vehicleType = db.VehicleTypes.Find(id);
+            VehicleType vehicleType = db.VehicleType(id);
             if (vehicleType == null)
             {
                 return HttpNotFound();
@@ -47,16 +49,15 @@ namespace MVCGarage.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Type")] VehicleType vehicleType)
+        public ActionResult Create([Bind(Include = "ID,Type,Fee")] CreateVehicleTypeDefaultFee viewModel)
         {
             if (ModelState.IsValid)
             {
-                db.VehicleTypes.Add(vehicleType);
-                db.SaveChanges();
+                db.Add(viewModel.VehicleType);
                 return RedirectToAction("Index");
             }
 
-            return View(vehicleType);
+            return View(viewModel);
         }
 
         // GET: VehicleTypes/Edit/5
@@ -66,7 +67,7 @@ namespace MVCGarage.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            VehicleType vehicleType = db.VehicleTypes.Find(id);
+            VehicleType vehicleType = db.VehicleType(id);
             if (vehicleType == null)
             {
                 return HttpNotFound();
@@ -83,8 +84,7 @@ namespace MVCGarage.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(vehicleType).State = EntityState.Modified;
-                db.SaveChanges();
+                db.Edit(vehicleType);
                 return RedirectToAction("Index");
             }
             return View(vehicleType);
@@ -97,7 +97,7 @@ namespace MVCGarage.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            VehicleType vehicleType = db.VehicleTypes.Find(id);
+            VehicleType vehicleType = db.VehicleType(id);
             if (vehicleType == null)
             {
                 return HttpNotFound();
@@ -110,9 +110,7 @@ namespace MVCGarage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            VehicleType vehicleType = db.VehicleTypes.Find(id);
-            db.VehicleTypes.Remove(vehicleType);
-            db.SaveChanges();
+            db.Delete(id);
             return RedirectToAction("Index");
         }
 

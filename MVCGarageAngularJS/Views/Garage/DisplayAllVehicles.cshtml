@@ -1,4 +1,4 @@
-﻿@model MVCGarage.ViewModels.Shared.DisplayVehiclesVM
+﻿@model MVCGarageAngularJS.ViewModels.Shared.DisplayVehiclesVM
 
 @{
     ViewBag.Title = "Display all vehicles";
@@ -16,7 +16,7 @@
             @Html.ActionLink("Register a new Vehicle",
                              "Create",
                              "Vehicles",
-                             new MVCGarage.ViewModels.Vehicles.CreateVehicleVM
+                             new MVCGarageAngularJS.ViewModels.Vehicles.CreateVehicleVM
                              {
                                  OriginActionName = Model.ViewName,
                                  OriginControllerName = "Garage"

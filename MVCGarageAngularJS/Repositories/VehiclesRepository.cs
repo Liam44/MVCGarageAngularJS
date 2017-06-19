@@ -1,11 +1,11 @@
-﻿using MVCGarage.DataAccess;
-using MVCGarage.Models;
+﻿using MVCGarageAngularJS.DataAccess;
+using MVCGarageAngularJS.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
-namespace MVCGarage.Repositories
+namespace MVCGarageAngularJS.Repositories
 {
     public class VehiclesRepository : IDisposable
     {

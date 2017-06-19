@@ -1,4 +1,4 @@
-﻿@model MVCGarage.ViewModels.Garage.SearchResultsVM
+﻿@model MVCGarageAngularJS.ViewModels.Garage.SearchResultsVM
 
 @{
     ViewBag.Title = "Searched vehicles and parking spots";
@@ -82,8 +82,8 @@
                         </tr>
                         @foreach (var item in Model.FoundVehicles.Vehicles)
                         {
-                            MVCGarage.Models.ParkingSpot parkingSpot = Model.FoundVehicles.ParkingSpotsVehicles[item.ID];
-                            MVCGarage.Models.ParkingSpot bookedParkingSpot = Model.FoundVehicles.BookedParkingSpots[item.ID];
+                            MVCGarageAngularJS.Models.ParkingSpot parkingSpot = Model.FoundVehicles.ParkingSpotsVehicles[item.ID];
+                            MVCGarageAngularJS.Models.ParkingSpot bookedParkingSpot = Model.FoundVehicles.BookedParkingSpots[item.ID];
 
                             <tr>
                                 <td>
@@ -93,7 +93,7 @@
                                     @Html.DisplayFor(modelItem => item.Owner)
                                 </td>
                                 <td>
-                                    @Html.DisplayName(MVCGarage.Models.EnumHelper.GetDescriptionAttr(item.VehicleType))
+                                    @Html.DisplayName(MVCGarageAngularJS.Models.EnumHelper.GetDescriptionAttr(item.VehicleType))
                                 </td>
                                 <td>
                                     @if (parkingSpot != null)
@@ -252,7 +252,7 @@
                                 @Html.DisplayFor(modelItem => item.Availability)
                             </td>
                             <td>
-                                @Html.DisplayName(MVCGarage.Models.EnumHelper.GetDescriptionAttr(item.ParkingSpot.VehicleType))
+                                @Html.DisplayName(MVCGarageAngularJS.Models.EnumHelper.GetDescriptionAttr(item.ParkingSpot.VehicleType))
                             </td>
                             <td>
                                 @if (available || parked)

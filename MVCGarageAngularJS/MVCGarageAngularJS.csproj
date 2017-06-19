@@ -124,6 +124,9 @@
     <EmbeddedResource Include="Migrations\201706190814502_Initial1.resx">
       <DependentUpon>201706190814502_Initial1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706190845177_Initial2.resx">
+      <DependentUpon>201706190845177_Initial2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -184,6 +187,10 @@
     <Compile Include="Migrations\201706190814502_Initial1.Designer.cs">
       <DependentUpon>201706190814502_Initial1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706190845177_Initial2.cs" />
+    <Compile Include="Migrations\201706190845177_Initial2.Designer.cs">
+      <DependentUpon>201706190845177_Initial2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CheckIn.cs" />
     <Compile Include="Models\DefaultFee.cs" />
@@ -210,6 +217,7 @@
     <Compile Include="ViewModels\Shared\DisplayVehiclesVM.cs" />
     <Compile Include="ViewModels\Vehicles\CreateVehicleVM.cs" />
     <Compile Include="ViewModels\Vehicles\SelectAVehicleVM.cs" />
+    <Compile Include="ViewModels\VehicleTypes\CreateVehicleTypeDefaultFee.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Garage.mdf" />
@@ -244,6 +252,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\defaultFeesScript.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />

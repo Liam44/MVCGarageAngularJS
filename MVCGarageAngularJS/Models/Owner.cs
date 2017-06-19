@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace MVCGarage.Models
+namespace MVCGarageAngularJS.Models
 {
     public class Owner
     {

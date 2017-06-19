@@ -1,11 +1,11 @@
-﻿using MVCGarage.Models;
+﻿using MVCGarageAngularJS.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
-namespace MVCGarage.DataAccess
+namespace MVCGarageAngularJS.DataAccess
 {
     public class GarageContext : DbContext
     {

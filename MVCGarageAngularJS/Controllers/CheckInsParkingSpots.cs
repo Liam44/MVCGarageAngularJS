@@ -1,11 +1,11 @@
-﻿using MVCGarage.Models;
-using MVCGarage.Repositories;
+﻿using MVCGarageAngularJS.Models;
+using MVCGarageAngularJS.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace MVCGarage.Controllers
+namespace MVCGarageAngularJS.Controllers
 {
     public class CheckInsParkingSpots
     {

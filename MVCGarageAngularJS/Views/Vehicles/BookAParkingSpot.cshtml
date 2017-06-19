@@ -1,4 +1,4 @@
-﻿@model MVCGarage.ViewModels.Vehicles.SelectAVehicleVM
+﻿@model MVCGarageAngularJS.ViewModels.Vehicles.SelectAVehicleVM
 
 @{
     ViewBag.Title = "Book A Parking Spot";
@@ -14,7 +14,7 @@
     @Html.ActionLink("Add a new vehicle",
                      "Create",
                      "Vehicles",
-                     new MVCGarage.ViewModels.Vehicles.CreateVehicleVM
+                     new MVCGarageAngularJS.ViewModels.Vehicles.CreateVehicleVM
                      {
                          OriginActionName = "BookAParkingSpot",
                          OriginControllerName = "Vehicles",

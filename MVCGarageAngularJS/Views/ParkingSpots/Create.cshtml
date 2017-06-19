@@ -1,4 +1,4 @@
-﻿@model MVCGarage.ViewModels.ParkingSpots.CreateParkingSpotsVM
+﻿@model MVCGarageAngularJS.ViewModels.ParkingSpots.CreateParkingSpotsVM
 
 @{
     ViewBag.Title = "Create a new parking spot";
@@ -57,7 +57,7 @@
                 @{
                     string toolTip = "Default fee values:";
                     toolTip += string.Format("{0}{1}{0}", Environment.NewLine, new string('-', 19));
-                    foreach (MVCGarage.Models.DefaultFee defaultFee in Model.DefaultFees)
+                    foreach (MVCGarageAngularJS.Models.DefaultFee defaultFee in Model.DefaultFees)
                     {
                         string text = string.Format("{0}: {1:N2}/min.",
                                                     defaultFee.VehicleType.Type,

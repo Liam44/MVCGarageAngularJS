@@ -6,10 +6,10 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using MVCGarage.DataAccess;
-using MVCGarage.Models;
+using MVCGarageAngularJS.DataAccess;
+using MVCGarageAngularJS.Models;
 
-namespace MVCGarage.Controllers
+namespace MVCGarageAngularJS.Controllers
 {
     public class DefaultFeesController : Controller
     {
