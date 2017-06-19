@@ -8,7 +8,7 @@
         $scope.sendData = sendData;
 
         function getData() {
-            $http.get("/api/vehicleTypes/get")
+            $http.get("/api/vehicleTypesapi/get")
             .then(function (response) {
                 $scope.data = response.data
                 debugger;
@@ -18,7 +18,7 @@
         $scope.vehicleType = { Type: "", Fee: 0 };
 
         function sendData() {
-            $http.post("/api/vehicleTypes/post", JSON.stringify($scope.vehicleType))
+            $http.post("/api/vehicleTypesapi/post", JSON.stringify($scope.vehicleType))
             .then(function (response) {
                 var tmp = angular.copy($scope.vehicleType);
                 $scope.data.push(tmp);

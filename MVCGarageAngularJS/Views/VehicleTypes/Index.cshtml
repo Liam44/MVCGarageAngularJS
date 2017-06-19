@@ -3,25 +3,25 @@
 }
 
 <div ng-app="vehicleTypes" ng-controller="vehicleTypesController">
-    <div class="jumbotron" ng-init="getData()">
-        <h2>Vehicle Types</h2>
+    <div class="jumbotron header" ng-init="getData()">
+        <h1>Vehicle Types</h1>
+        <hr />
+        <p>This is where you can look at the registered vehicle types.</p>
+    </div>
 
-        <p>
-            @Html.ActionLink("Create New", "Create")
-        </p>
+    <p style="font-size: 2em; text-align: center;">
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <div class="index-table" style="margin-bottom: 3em;">
         <table>
-            <thead>
-                <tr>
-                    <th>Vehicle type</th>
-                    <th>Default fee</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="vehicleType in data track by $index">
-                    <td>{{vehicleType.Type}}</td>
-                    <td>{{vehicleType.Fee}}</td>
-                </tr>
-            </tbody>
+            <tr>
+                <th>Vehicle type</th>
+                <th>Default fee</th>
+            </tr>
+            <tr ng-repeat="vehicleType in data track by $index">
+                <td>{{vehicleType.Type}}</td>
+                <td>{{vehicleType.Fee}}</td>
+            </tr>
         </table>
     </div>
 </div>
