@@ -17,15 +17,10 @@ namespace MVCGarageAngularJS.Migrations
         {
             #region Instantiating
 
-            VehicleType car = new VehicleType { Type = "Car" };
-            VehicleType motorcycle = new VehicleType { Type = "Motorcycle" };
-            VehicleType truck = new VehicleType { Type = "Truck" };
-            VehicleType bus = new VehicleType { Type = "Bus" };
-
-            DefaultFee carFee = new DefaultFee { Fee = 0.20 };
-            DefaultFee motorcycleFee = new DefaultFee { Fee = 0.50 };
-            DefaultFee truckFee = new DefaultFee { Fee = 0.80 };
-            DefaultFee busFee = new DefaultFee { Fee = 1.00 };
+            VehicleType car = new VehicleType { Type = "Car", Fee = 0.20 };
+            VehicleType motorcycle = new VehicleType { Type = "Motorcycle", Fee = 0.50 };
+            VehicleType truck = new VehicleType { Type = "Truck", Fee = 0.80 };
+            VehicleType bus = new VehicleType { Type = "Bus", Fee = 1.00 };
 
             Owner Mike = new Owner { Fname = "Mike", Lname = "Daughtrey", Gender = "M", LicenseNumber = "ABC-123-DEF" };
             Owner Wilhelm = new Owner { Fname = "Wilhelm", Lname = "Hansson", Gender = "M", LicenseNumber = "ABC-124-DEF" };
@@ -49,16 +44,6 @@ namespace MVCGarageAngularJS.Migrations
             #endregion
 
             #region Mapping
-
-            car.DefaultFee = carFee;
-            motorcycle.DefaultFee = motorcycleFee;
-            truck.DefaultFee = truckFee;
-            bus.DefaultFee = busFee;
-
-            carFee.VehicleType = car;
-            motorcycleFee.VehicleType = motorcycle;
-            truckFee.VehicleType = truck;
-            busFee.VehicleType = bus;
 
             v1.VehicleType = car;
             v1.Owner = Mike;

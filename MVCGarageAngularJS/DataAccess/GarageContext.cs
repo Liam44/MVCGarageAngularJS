@@ -10,7 +10,6 @@ namespace MVCGarageAngularJS.DataAccess
     public class GarageContext : DbContext
     {
         public DbSet<VehicleType> VehicleTypes { get; set; }
-        public DbSet<DefaultFee> DefaultFees { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<ParkingSpot> ParkingSpots { get; set; }
         public DbSet<CheckIn> CheckIns { get; set; }
@@ -20,23 +19,5 @@ namespace MVCGarageAngularJS.DataAccess
             : base("DefaultConnection")
         {
         }
-
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    base.OnModelCreating(modelBuilder);
-
-        //    //One-To-Many
-        //    modelBuilder.Entity<Vehicle>()
-        //                .HasRequired<VehicleType>(vt => vt.VehicleType)
-        //                .WithMany(v => v.Vehicles);
-        //    //One-To-Many
-        //    modelBuilder.Entity<Vehicle>()
-        //                .HasRequired<Owner>(o => o.Owner)
-        //                .WithMany(v => v.Vehicles);
-
-        //    modelBuilder.Entity<DefaultFee>()
-        //                .HasRequired<VehicleType>(f => f.VehicleType)
-        //                .WithRequiredDependent(vt => vt.DefaultFee);
-        //}
     }
 }

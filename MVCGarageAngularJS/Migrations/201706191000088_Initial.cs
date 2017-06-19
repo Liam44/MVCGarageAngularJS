@@ -31,7 +31,6 @@ namespace MVCGarageAngularJS.Migrations
                     {
                         ID = c.Int(nullable: false, identity: true),
                         Label = c.String(),
-                        Fee = c.Double(),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -68,20 +67,9 @@ namespace MVCGarageAngularJS.Migrations
                     {
                         ID = c.Int(nullable: false, identity: true),
                         Type = c.String(nullable: false),
-                        DefaultFeeID = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.ID);
-            
-            CreateTable(
-                "dbo.DefaultFees",
-                c => new
-                    {
-                        ID = c.Int(nullable: false),
                         Fee = c.Double(nullable: false),
                     })
-                .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.VehicleTypes", t => t.ID)
-                .Index(t => t.ID);
+                .PrimaryKey(t => t.ID);
             
         }
         
@@ -89,15 +77,12 @@ namespace MVCGarageAngularJS.Migrations
         {
             DropForeignKey("dbo.CheckIns", "VehicleID", "dbo.Vehicles");
             DropForeignKey("dbo.Vehicles", "VehicleTypeID", "dbo.VehicleTypes");
-            DropForeignKey("dbo.DefaultFees", "ID", "dbo.VehicleTypes");
             DropForeignKey("dbo.Vehicles", "OwnerID", "dbo.Owners");
             DropForeignKey("dbo.CheckIns", "ParkingSpotID", "dbo.ParkingSpots");
-            DropIndex("dbo.DefaultFees", new[] { "ID" });
             DropIndex("dbo.Vehicles", new[] { "VehicleTypeID" });
             DropIndex("dbo.Vehicles", new[] { "OwnerID" });
             DropIndex("dbo.CheckIns", new[] { "VehicleID" });
             DropIndex("dbo.CheckIns", new[] { "ParkingSpotID" });
-            DropTable("dbo.DefaultFees");
             DropTable("dbo.VehicleTypes");
             DropTable("dbo.Owners");
             DropTable("dbo.Vehicles");

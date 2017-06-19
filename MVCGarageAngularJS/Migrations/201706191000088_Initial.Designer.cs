@@ -13,7 +13,7 @@ namespace MVCGarageAngularJS.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201706190743185_Initial"; }
+            get { return "201706191000088_Initial"; }
         }
         
         string IMigrationMetadata.Source
