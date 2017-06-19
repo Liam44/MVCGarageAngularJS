@@ -13,15 +13,14 @@
         function getVehicleTypes() {
             $http.get("/api/vehicleTypesAPI/get")
             .then(function (response) {
-                $scope.data = response.data
+                $scope.data = response.data;
             });
         }
 
         function getVehicleType(id) {
             $http.get("/api/vehicleTypesAPI/get?id=" + id)
             .then(function (response) {
-                $scope.vehicleType = response.data
-                debugger;
+                $scope.vehicleType = response.data;
             });
         }
 
