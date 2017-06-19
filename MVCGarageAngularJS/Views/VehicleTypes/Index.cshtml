@@ -4,33 +4,31 @@
 
 <div ng-app="vehicleTypes" ng-controller="vehicleTypesController">
     <div class="jumbotron header" ng-init="getData()">
-        <h2>Vehicle Types</h2>
+        <h1>Vehicle Types</h1>
+        <hr />
+        <p>This is where you can look at the registered vehicle types.</p>
+    </div>
 
-        <p>
+    <p style="font-size: 2em; text-align: center;">
             @Html.ActionLink("Create New", "Create")
         </p>
-
-        <div class="index-table">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Vehicle type</th>
-                        <th>Default fee</th>
+    <div class="index-table" style="margin-bottom: 3em;">
+        <table>
+                <tr>
+                    <th>Vehicle type</th>
+                    <th>Default fee</th>
                         <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="vehicleType in data track by $index">
-                        <td>{{vehicleType.Type}}</td>
-                        <td>{{vehicleType.Fee}}</td>
+                </tr>
+                <tr ng-repeat="vehicleType in data track by $index">
+                    <td>{{vehicleType.Type}}</td>
+                    <td>{{vehicleType.Fee}}</td>
                         <td>
                             <a href="/VehicleTypes/Edit" ng-model="{{vehicleType.ID}}">Edit</a>
                             <a href="/VehicleTypes/Details" ng-model="{{vehicleType.ID}}">Details</a>
                             <a href="/VehicleTypes/Delete" ng-model="{{vehicleType.ID}}">Delete</a>
                         </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+                </tr>
+        </table>
     </div>
+</div>
 </div>
