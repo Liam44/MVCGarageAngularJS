@@ -1,23 +1,22 @@
 ﻿<div ng-app="vehicleTypes" ng-controller="vehicleTypesController">
-    <div class="jumbotron" ng-init="getData()">
+    <div class="jumbotron header" ng-init="getData()">
         <h1>Learning Angular with WebAPI</h1>
+    </div>
+
+    <div class="index-table">
         <table>
-            <thead>
                 <tr>
                     <th>Vehicle type</th>
                     <th>Default fee</th>
                 </tr>
-            </thead>
-            <tbody>
                 <tr ng-repeat="vehicleType in data track by $index">
                     <td>{{vehicleType.Type}}</td>
                     <td>{{vehicleType.Fee}}</td>
                 </tr>
-            </tbody>
         </table>
     </div>
 
-    <form>
+    <form style="text-align: center;">
         <div>
             <input type="text" id="name" placeholder="Enter the new vehicle type" ng-model="vehicleType.Type" style="width:450px" />
         </div>

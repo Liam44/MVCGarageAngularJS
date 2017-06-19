@@ -18,6 +18,7 @@ namespace MVCGarageAngularJS.DataAccess
         public GarageContext()
             : base("DefaultConnection")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
     }
 }
