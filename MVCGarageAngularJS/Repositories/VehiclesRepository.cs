@@ -49,6 +49,12 @@ namespace MVCGarageAngularJS.Repositories
             SaveChanges();
         }
 
+        public void Remove(Vehicle vehicle)
+        {
+            db.Vehicles.Remove(vehicle);
+            SaveChanges();
+        }
+
         private void SaveChanges()
         {
             db.SaveChanges();

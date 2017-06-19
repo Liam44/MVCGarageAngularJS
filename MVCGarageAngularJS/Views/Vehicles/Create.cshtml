@@ -1,0 +1,17 @@
+﻿<div ng-app="vehicles" ng-controller="vehicleController" ng-init="getData()">
+    <div class="jumbotron header">
+        <h1>Learning Angular with WebAPI</h1>
+        <hr />
+        <p>Register a new vehicle</p>
+    </div>
+
+    <form>
+        <div>
+            <input type="text" id="name" placeholder="Enter the Reg. Plate number" ng-model="vehicle.RegistrationPlate" style="width:450px" />
+        </div>
+        <div ng-init="getOwners()">
+            <select ng-model="owner.Name" ng-options="x for x in data"></select>
+        </div>
+        <button ng-click="sendData()">Send Data</button>
+    </form>
+</div>
