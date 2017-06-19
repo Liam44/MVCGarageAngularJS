@@ -4,17 +4,25 @@
     app.controller("vehicleTypesController", ['$scope', '$http', function ($scope, $http) {
         $scope.data = "This will contain data";
 
-        $scope.getData = getData;
+        $scope.getVehicleType = getVehicleType;
+        $scope.getVehicleTypes = getVehicleTypes;
         $scope.sendData = sendData;
 
-        function getData() {
+        $scope.vehicleType = { ID: 0, Type: "", Fee: 0 };
+
+        function getVehicleTypes() {
             $http.get("/api/vehicleTypesAPI/get")
             .then(function (response) {
-                $scope.data = response.data
+                $scope.data = response.data;
             });
         }
 
-        $scope.vehicleType = { ID: 0, Type: "", Fee: 0 };
+        function getVehicleType(id) {
+            $http.get("/api/vehicleTypesAPI/get?id=" + id)
+            .then(function (response) {
+                $scope.vehicleType = response.data;
+            });
+        }
 
         function sendData() {
             $http.post("/api/vehicleTypesAPI/post", JSON.stringify($scope.vehicleType))
