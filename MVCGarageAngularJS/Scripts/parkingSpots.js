@@ -13,22 +13,7 @@
 
         $scope.getAvailableParkingSpots = getAvailableParkingSpots;
 
-        var checkIn = {
-            ID: 0,
-            CheckInTime: undefined,
-            Booked: undefined,
-            CheckOutTime: undefined,
-            TotalAmount: undefined,
-            ParkingSpotID: undefined,
-            VehicleID: undefined
-        };
-
         $scope.parkingSpot = { ID: 0, Label: undefined };
-        $scope.allinfo = {
-            parkingSpot: { ID: 0, Label: undefined },
-            vehicle: { ID: 0, RegistrationPlate: undefined },
-            checkIns: []
-        };
 
         function getParkingSpots() {
             $http.get("/api/parkingSpotsAPI/getparkingspots")
@@ -73,15 +58,22 @@
         }
 
         function getAvailableParkingSpots(vehicleId, checkIn) {
-            $http.get("/api/parkingspotsapi/getavailableparkingspots?vehicleId=" + vehicleId + "&checkIn=" + (checkIn == 0 ? true : false))
+            $http.get("/api/parkingSpotsAPI/getAvailableParkingSpots?vehicleId=" + vehicleId + "&checkIn=" + (checkIn == 0 ? true : false))
                 .then(function (response) {
                     debugger;
-                    $scope.data = response.data;
+                    $scope.parkingSpots = response.data.ParkingSpots;
+                    $scope.selectedVehicle = response.data.SelectedVehicle;
+                    $scope.owner = response.data.SelectedVehicle.Owner;
                 });
         }
 
-        function selectAParkingSpot(id) {
+        $scope.selectedParkingSpotID = 0;
 
+        function selectAParkingSpot() {
+            $http.post("/api/parkingSpotsAPI/SelectAParkingSpot?id=" + $scope.selectedParkingSpotID)
+                .then(function (response) {
+        $window.location.href = "/ParkingSpots/Index";
+    });
         }
     }]);
 }());

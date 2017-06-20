@@ -12,12 +12,12 @@
 <div ng-app="parkingSpots" ng-controller="parkingSpotsController">
     <div ng-init="getAvailableParkingSpots(@Model.SelectedVehicle.ID, @Model.CheckIn)">
 
-        <div ng-hide="data" class="about-body-text" style="color: white; margin-top: 10em; text-align: center;">
+        <div ng-hide="parkingSpots" class="about-body-text" style="color: white; margin-top: 10em; text-align: center;">
             <h4>All our parking spots are unfortunately taken!</h4>
             <hr />
         </div>
 
-        <div ng-show="data" class="about-body-text" style="color: white; margin-top: 10em; text-align: center;">
+        <div ng-show="parkingSpots" class="about-body-text" style="color: white; margin-top: 10em; text-align: center;">
             <div class="index-table">
                 <table>
                     <tr>
@@ -30,10 +30,17 @@
                     </tr>
                     <tr>
                         <td>
-                            {{data.SelectedVehicle.RegistrationPlate}}
+                            {{selectedVehicle.RegistrationPlate}}
                         </td>
                         <td>
-                            {{data.SelectedVehicle.Owner.LName}} {{data.SelectedVehicle.Owner.FName}}
+                            <span ng-show="owner.Lname">
+                                OWNER!!!!
+                                <br />
+                                "{{owner.LName}}"
+                                <br />
+                                {{owner.FName}}
+                            </span>
+                            @*<span ng-hide="selectedVehicle.Owner.Fname">NO OWNER...</span>*@
                         </td>
                     </tr>
                 </table>
@@ -50,9 +57,9 @@
                                 Identifiant
                             </th>
                         </tr>
-                        <tr ng-repeat="parkingSpot in data.ParkingSpots track by $index">
+                        <tr ng-repeat="parkingSpot in parkingSpots track by $index">
                             <td>
-                                <input id="ParkingSpotID" name="ParkingSpotID" type="radio" value="{{parkingSpot.ID}}" />
+                                <input type="radio" ng-model="selectedParkingSpotID" value="parkingSpot.ID" />
                             </td>
                             <td>
                                 {{parkingSpot.Label}}
