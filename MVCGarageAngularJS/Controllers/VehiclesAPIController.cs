@@ -68,13 +68,14 @@ namespace MVCGarageAngularJS.Controllers
 
         // POST: api/VehiclesControllerAPI
         [ResponseType(typeof(Vehicle))]
-        public IHttpActionResult PostVehicle(Vehicle vehicle)
+        public IHttpActionResult Post(Vehicle vehicle)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+            vehicle.RegistrationPlate = vehicle.RegistrationPlate.ToUpper();
             db.Add(vehicle);
 
             return CreatedAtRoute("DefaultApi", new { id = vehicle.ID }, vehicle);

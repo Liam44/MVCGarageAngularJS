@@ -1,17 +1,36 @@
-﻿<div ng-app="vehicles" ng-controller="vehicleController" ng-init="getData()">
+﻿<div ng-app="vehicles" ng-controller="vehicleController" ng-init="getOwners()" style="margin-bottom: 3em;">
     <div class="jumbotron header">
         <h1>Learning Angular with WebAPI</h1>
         <hr />
         <p>Register a new vehicle</p>
     </div>
 
-    <form>
-        <div>
-            <input type="text" id="name" placeholder="Enter the Reg. Plate number" ng-model="vehicle.RegistrationPlate" style="width:450px" />
-        </div>
-        <div ng-init="getOwners()">
-            <select ng-model="owner.Name" ng-options="x for x in data"></select>
-        </div>
-        <button ng-click="sendData()">Send Data</button>
-    </form>
+    <div class="jumbotron" style="color:white;">
+        <form>
+            <div class="form-group">
+                
+                <div style="text-align: left;margin-left: auto; margin-right: auto;">
+                    <p style="display: inline-block; margin-right: 20px;">Enter a Registration Plate Number:</p>
+                    <input required type="text" id="name" placeholder="Enter the Reg. Plate number" ng-model="vehicleRegistrationPlate" style="display: inline-block; width: 450px; color: black;" />
+                </div>
+                <hr />
+                <div ng-init="getOwners()" style="text-align:left;">
+                    <p style="display:inline-block; margin-right: 20px;">Select an Owner:</p>
+                    <select ng-model="selectedOwner" required style="width: 450px; display: inline-block; color: black;">
+                        <option ng-repeat="owner in ownerData track by $index" value="{{owner.ID}}">{{owner.Fname}}</option>
+                    </select>
+                </div>
+                <hr />
+                <div ng-init="getVehicleTypes()" style="text-align:left;">
+                    <p style="display:inline-block; margin-right: 20px;">Select a Vehicle Type:</p>
+                    <select ng-model="selectedVehicleType" required style="width: 450px; display: inline-block; color: black;">
+                        <option ng-repeat="vehicleType in vehicleTypes track by $index" value="{{vehicleType.ID}}">{{vehicleType.Type}}</option>
+                    </select>
+                </div>
+                <div style="color: black;">
+                    <button ng-click="sendData()">Send Data</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>

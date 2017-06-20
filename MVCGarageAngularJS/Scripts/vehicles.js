@@ -1,18 +1,33 @@
 ﻿(function () {
     var app = angular.module("vehicles", []);
 
-    app.controller("vehicleController", ['$scope', '$http', function ($scope, $http) {
+    app.controller("vehicleController", ['$scope', '$http', '$window', function ($scope, $http, $window) {
         $scope.data = "This will contain data";
 
         $scope.getVehicle = getVehicle;
         $scope.getVehicles = getVehicles;
         $scope.getOwner = getOwner;
         $scope.getOwners = getOwners;
+        $scope.getVehicleTypes = getVehicleTypes;
         $scope.sendData = sendData;
 
+        vehicleType = {
+            ID: 0,
+            Type: undefined,
+            Fee: 0
+        }
 
-        $scope.vehicle = { ID: 0, RegistrationPlate: "" };
-        $scope.owner = { ID: 0, Name: "" };
+        owner = {
+            ID: 0,
+            Fname: "",
+            Lname: "",
+            Gender: "",
+            LicenseNumber: ""
+        }
+
+        $scope.vehicle = { ID: 0, RegistrationPlate: "", Owner: undefined, VehicleType: undefined, };
+        $scope.owner = owner;
+        $scope.vehicleType = vehicleType;
 
         function getVehicles() {
             $http.get("/api/vehiclesAPI/get")
@@ -30,7 +45,7 @@
         }
 
         function getOwners() {
-            $http.get("api/ownersAPI/get")
+            $http.get("/api/ownersAPI/get")
                 .then(function (response) {
                     $scope.ownerData = response.data;
                 });
@@ -44,15 +59,20 @@
             });
         }
 
+        function getVehicleTypes() {
+            $http.get("/api/vehicleTypesAPI/get")
+                .then(function (response) {
+                    $scope.vehicleTypes = response.data;
+                    debugger;
+                });
+        }
         function sendData() {
+            $scope.vehicle.VehicleTypeID = $scope.selectedVehicleType;
+            $scope.vehicle.OwnerID = $scope.selectedOwner;
+            $scope.vehicle.RegistrationPlate = $scope.vehicleRegistrationPlate;
             $http.post("/api/vehiclesAPI/post", JSON.stringify($scope.vehicle))
             .then(function (response) {
-                var tmp = angular.copy($scope.vehicle);
-                $scope.data.push(tmp);
-                $scope.vehicle.Owner = undefined;
-                $scope.vehicle.VehicleType = undefined;
-                $scope.vehicle.CheckIns = undefined;
-
+                $window.location.href = "/Vehicles/Index";
             });
         }
     }]);
