@@ -1,0 +1,109 @@
+﻿@{
+    ViewBag.Title = "Parked vehicles";
+}
+
+<div class="container">
+    <div>
+        <div class="header jumbotron">
+            <h1>Vehicles currently registered</h1>
+            <hr />
+            <p>
+                These are the Vehicles that are currently parked
+                <br />
+                or have booked a parking spot
+            </p>
+        </div>
+
+        <div ng-app="garage" ng-controller="garageController">
+            <div ng-init="getParkedVehicles()">
+
+                <p style="color: white; text-align: center; font-size: 2em;">
+                    <a href="/Vehicles/Create?OriginActionName=DisplayAllVehicles&amp;OriginControllerName=Garage">Register a new Vehicle</a>
+                </p>
+
+                <div ng-hide="data" class="about-body-text" style="color: white; margin-top: 3em; text-align: center;">
+                    <h4>The garage is currently empty!</h4>
+                    <hr />
+                </div>
+
+                <div ng-show="data" class="container">
+                    <div class="index-table">
+                        <table>
+                            <tr>
+                                <th>
+                                    Registration Plate
+                                </th>
+                                <th>
+                                    Vehicle Type
+                                </th>
+                                <th>
+                                    Check In Time
+                                </th>
+                                <th>
+                                    Parking Spot
+                                </th>
+                                <th>
+                                    Fee
+                                </th>
+                                <th></th>
+                            </tr>
+                            <tr ng-repeat="vehicle in data track by $index">
+                                <td>
+                                    {{data.RegistrationPlate}}
+                                </td>
+                                <td>
+                                    {{data.VehicleType.Type}}
+                                </td>
+                                <td>
+                                    <span ng-show="data.CheckIn">
+                                        {{data.CheckIn.CheckInTime}}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span ng-show="data.CheckIn">
+                                        {{data.CheckIn.ParkingSpot.Label}}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span ng-show="data.CheckIn">
+                                        <span ng-show="data.CheckIn.Booked">
+                                            {{data.CheckIn.MonthlyFee}}
+                                        </span>
+                                        <span ng-hide="data.CheckIn.Booked">
+                                            {{data.CheckIn.Fee}}
+                                        </span>
+                                    </span>
+                                </td>
+                                <td>
+                                    @* Custom actions, according to the parked/unparked status of the vehicle *@
+                                    <span ng-show="data.CheckIn">
+                                        <a href="/Garage/CheckInAVehicle?vehicleId={{vehicle.ID}}">Check in</a>                             |
+                                        <a href="/Vehicles/BookAParkingSpotForAVehicle?vehicleId={{vehicle.ID}}">Book a parking spot</a>                             |
+                                        <a href="/Vehicles/Edit/{{vehicle.ID}}">Edit</a> |
+                                        <a href="/Vehicles/Details/{{vehicle.ID}}">Details</a> |
+                                        <a href="/Vehicles/Delete/{{vehicle.ID}}">Delete</a> |
+                                        <a href="/CheckIns/VehicleHistoric?vehicleId={{vehicle.ID}}">View historic</a>
+                                    </span>
+
+                                    <span ng-hide="data.CheckIn">
+                                        <span ng-show="data.CheckIn.Booked">
+                                            <a href="/Garage/CheckOutAVehicle?vehicleId={{vehicle.ID}}">Check out</a> |
+                                            <a href="/Vehicles/Details/{{vehicle.ID}}">Details</a> |
+                                            <a href="/CheckIns/VehicleHistoric?vehicleId={{vehicle.ID}}">View historic</a>
+                                        </span>
+
+                                        <span ng-hide="data.CheckIn.Booked">
+                                            <a href="/Garage/UnbookAParkingSpot?vehicleId={{vehicle.ID}}">Unbook parking spot</a> |
+                                            <a href="/Vehicles/Details/{{vehicle.ID}}">Details</a> |
+                                            <a href="/CheckIns/VehicleHistoric?vehicleId={{vehicle.ID}}">View historic</a>
+                                        </span>
+                                    </span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

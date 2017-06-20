@@ -12,6 +12,11 @@ namespace MVCGarageAngularJS.Controllers
     {
         private ParkingSpotsRepository db = new ParkingSpotsRepository();
 
+        internal ParkingSpot ParkingSpot(int id)
+        {
+            return db.ParkingSpot(id);
+        }
+
         // GET: api/ParkingSpotsAPI
         public IEnumerable<ParkingSpot> GetParkingSpots()
         {
@@ -101,7 +106,8 @@ namespace MVCGarageAngularJS.Controllers
 
         public IHttpActionResult SelectAParkingSpot(int vehicleId, int parkingSpotId)
         {
-            return Ok();
+            // Create a new "Check In" relationship between the vehicle and the parking spot
+            return new CheckInsAPIController().VehicleCheckedIn(vehicleId, parkingSpotId);
         }
 
         protected override void Dispose(bool disposing)

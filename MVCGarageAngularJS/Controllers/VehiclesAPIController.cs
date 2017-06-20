@@ -21,12 +21,7 @@ namespace MVCGarageAngularJS.Controllers
 
         internal Vehicle Vehicle(int id)
         {
-            Vehicle v = db.Vehicle(id);
-
-            if (v != null)
-              v.Owner = new OwnersAPIController().Owner(v.OwnerID);
-
-            return v;
+            return db.GetVehiclesWithOwners().SingleOrDefault(v => v.ID == id);
         }
 
         // GET: api/VehiclesControllerAPI

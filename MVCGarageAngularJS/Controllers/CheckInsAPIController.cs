@@ -11,24 +11,25 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using MVCGarageAngularJS.DataAccess;
 using MVCGarageAngularJS.Models;
+using MVCGarageAngularJS.Repositories;
 
 namespace MVCGarageAngularJS.Controllers
 {
     public class CheckInsAPIController : ApiController
     {
-        private GarageContext db = new GarageContext();
+        private CheckInsRepository db = new CheckInsRepository();
 
         // GET: api/CheckInsAPI
-        public IQueryable<CheckIn> GetCheckIns()
+        public IEnumerable<CheckIn> Get()
         {
-            return db.CheckIns;
+            return db.CheckIns();
         }
 
         // GET: api/CheckInsAPI/5
         [ResponseType(typeof(CheckIn))]
-        public async Task<IHttpActionResult> GetCheckIn(int id)
+        public IHttpActionResult Get(int id)
         {
-            CheckIn checkIn = await db.CheckIns.FindAsync(id);
+            CheckIn checkIn = db.CheckIn(id);
             if (checkIn == null)
             {
                 return NotFound();
@@ -39,7 +40,7 @@ namespace MVCGarageAngularJS.Controllers
 
         // PUT: api/CheckInsAPI/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutCheckIn(int id, CheckIn checkIn)
+        public IHttpActionResult Put(int id, CheckIn checkIn)
         {
             if (!ModelState.IsValid)
             {
@@ -51,56 +52,48 @@ namespace MVCGarageAngularJS.Controllers
                 return BadRequest();
             }
 
-            db.Entry(checkIn).State = EntityState.Modified;
-
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CheckInExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            db.Edit(checkIn);
 
             return StatusCode(HttpStatusCode.NoContent);
         }
 
         // POST: api/CheckInsAPI
         [ResponseType(typeof(CheckIn))]
-        public async Task<IHttpActionResult> PostCheckIn(CheckIn checkIn)
+        public IHttpActionResult Post(CheckIn checkIn)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.CheckIns.Add(checkIn);
-            await db.SaveChangesAsync();
+            db.Add(checkIn);
 
             return CreatedAtRoute("DefaultApi", new { id = checkIn.ID }, checkIn);
         }
 
-        // DELETE: api/CheckInsAPI/5
-        [ResponseType(typeof(CheckIn))]
-        public async Task<IHttpActionResult> DeleteCheckIn(int id)
+        public IHttpActionResult VehicleCheckedIn(int vehicleId, int parkingSpotId)
         {
-            CheckIn checkIn = await db.CheckIns.FindAsync(id);
-            if (checkIn == null)
-            {
-                return NotFound();
-            }
+            // Check that the vehicle isn't already parked/hasn't booked a place
+            if (db.CheckInByVehicle(vehicleId) != null)
+                return BadRequest("Already checked in vehicle!");
 
-            db.CheckIns.Remove(checkIn);
-            await db.SaveChangesAsync();
+            Vehicle vehicle = new VehiclesAPIController().Vehicle(vehicleId);
 
-            return Ok(checkIn);
+            if (vehicle == null)
+                return BadRequest("You must select a vehicle!");
+
+            // Check in the vehicle ID to the parking spot
+            ParkingSpot parkingSpot = new ParkingSpotsAPIController().ParkingSpot(parkingSpotId);
+
+            if (parkingSpot == null)
+                return BadRequest("You must select a parking spot!");
+
+            CheckIn checkIn = db.CheckIn(vehicleId, parkingSpotId);
+            checkIn.Vehicle = vehicle;
+            checkIn.ParkingSpot = parkingSpot;
+
+            // Displays the chosen parking spot
+            return Ok();
         }
 
         protected override void Dispose(bool disposing)
@@ -110,11 +103,6 @@ namespace MVCGarageAngularJS.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        private bool CheckInExists(int id)
-        {
-            return db.CheckIns.Count(e => e.ID == id) > 0;
         }
     }
 }

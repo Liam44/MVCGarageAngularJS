@@ -13,5 +13,15 @@ namespace MVCGarageAngularJS.Controllers
         {
             return View();
         }
-    }
+
+        public ActionResult DisplayAllVehicles()
+        {
+            return View();
+        }
+  
+        public ActionResult DisplayParkedVehicles()
+        {
+            return View();
+        }
+  }
 }

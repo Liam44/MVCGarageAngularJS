@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Select A Parking Spot";
 }
+
 <div class="header jumbotron">
     <h1>Select a parking spot</h1>
     <hr />
@@ -27,20 +28,19 @@
                         <th>
                             Owner
                         </th>
+                        <th>
+                            Licence Number
+                        </th>
                     </tr>
                     <tr>
                         <td>
                             {{selectedVehicle.RegistrationPlate}}
                         </td>
                         <td>
-                            <span ng-show="owner.Lname">
-                                OWNER!!!!
-                                <br />
-                                "{{owner.LName}}"
-                                <br />
-                                {{owner.FName}}
-                            </span>
-                            @*<span ng-hide="selectedVehicle.Owner.Fname">NO OWNER...</span>*@
+                            {{selectedVehicle.Owner.Lname}} {{selectedVehicle.Owner.Fname}}
+                        </td>
+                        <td>
+                            {{selectedVehicle.Owner.LicenseNumber}}
                         </td>
                     </tr>
                 </table>
@@ -59,7 +59,7 @@
                         </tr>
                         <tr ng-repeat="parkingSpot in parkingSpots track by $index">
                             <td>
-                                <input type="radio" ng-model="selectedParkingSpotID" value="parkingSpot.ID" />
+                                <input type="radio" ng-model="$parent.selectedParkingSpotID" value="{{parkingSpot.ID}}" name="ParkingSpotID" />
                             </td>
                             <td>
                                 {{parkingSpot.Label}}

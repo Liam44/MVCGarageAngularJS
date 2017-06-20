@@ -60,20 +60,21 @@
         function getAvailableParkingSpots(vehicleId, checkIn) {
             $http.get("/api/parkingSpotsAPI/getAvailableParkingSpots?vehicleId=" + vehicleId + "&checkIn=" + (checkIn == 0 ? true : false))
                 .then(function (response) {
-                    debugger;
                     $scope.parkingSpots = response.data.ParkingSpots;
                     $scope.selectedVehicle = response.data.SelectedVehicle;
-                    $scope.owner = response.data.SelectedVehicle.Owner;
                 });
         }
 
         $scope.selectedParkingSpotID = 0;
 
         function selectAParkingSpot() {
-            $http.post("/api/parkingSpotsAPI/SelectAParkingSpot?id=" + $scope.selectedParkingSpotID)
+            $http.post("/api/parkingSpotsAPI/selectAParkingSpot?vehicleId=" + parseInt($scope.selectedVehicle.ID) + "&parkingSpotId=" + parseInt($scope.selectedParkingSpotID))
                 .then(function (response) {
-        $window.location.href = "/ParkingSpots/Index";
-    });
+                    $window.location.href = "/ParkingSpots/Index";
+                })
+                .catch(function (error) {
+                    $scope.error = error.statusText;
+                });
         }
     }]);
 }());

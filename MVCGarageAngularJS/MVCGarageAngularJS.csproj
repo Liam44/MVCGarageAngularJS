@@ -151,7 +151,6 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\AllowCrossOriginRequests.cs" />
     <Compile Include="Controllers\CheckInsAPIController.cs" />
     <Compile Include="Controllers\CheckInsController.cs" />
     <Compile Include="Controllers\CheckInsParkingSpots.cs" />
@@ -239,6 +238,7 @@
     <Content Include="Content\fonts\Drugs.otf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\owners.js" />
+    <Content Include="Scripts\garage.js" />
     <Content Include="Scripts\vehicles.js" />
     <Content Include="Scripts\parkingSpots.js" />
     <Content Include="Scripts\vehicleTypes.js" />
@@ -282,6 +282,8 @@
     <Content Include="Views\ParkingSpots\SelectAParkingSpot.cshtml" />
     <Content Include="Views\Garage\Index.cshtml" />
     <Content Include="Views\CheckIns\VehicleCheckedIn.cshtml" />
+    <Content Include="Views\Garage\DisplayAllVehicles.cshtml" />
+    <Content Include="Views\Garage\DisplayParkedVehicles.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
