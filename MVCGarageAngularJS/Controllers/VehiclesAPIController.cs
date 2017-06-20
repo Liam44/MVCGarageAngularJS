@@ -18,6 +18,8 @@ namespace MVCGarageAngularJS.Controllers
     public class VehiclesAPIController : ApiController
     {
         private VehiclesRepository db = new VehiclesRepository();
+        private OwnersRepository own = new OwnersRepository();
+        private VehicleTypesRepository vtr = new VehicleTypesRepository();
 
         internal Vehicle Vehicle(int id)
         {
@@ -49,22 +51,25 @@ namespace MVCGarageAngularJS.Controllers
         }
 
         // PUT: api/VehiclesControllerAPI/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutVehicle(int id, Vehicle vehicle)
+        [HttpPut]
+        public HttpResponseMessage Put(int id, int ownerID, int vehicleTypeID, string regNum)
         {
-            if (!ModelState.IsValid)
+            Vehicle v = db.Vehicle(id);
+            Owner owner = own.Find(ownerID);
+            VehicleType vehicleType = vtr.VehicleType(vehicleTypeID);
+
+            if (v == null || v.ID == id)
             {
-                return BadRequest(ModelState);
+                v = db.Vehicle(id);
+                v.Owner = owner;
+                v.VehicleType = vehicleType;
+                v.RegistrationPlate = regNum;
+
+                db.Edit(v);
+                return Request.CreateResponse(HttpStatusCode.OK, "This works");
             }
-
-            if (id != vehicle.ID)
-            {
-                return BadRequest();
-            }
-
-            db.Edit(vehicle);
-
-            return StatusCode(HttpStatusCode.NoContent);
+            else 
+                return Request.CreateResponse(HttpStatusCode.Conflict, "Cannot edit Vehicle");
         }
 
         // POST: api/VehiclesControllerAPI

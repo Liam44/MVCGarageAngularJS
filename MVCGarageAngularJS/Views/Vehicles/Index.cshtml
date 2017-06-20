@@ -18,15 +18,15 @@
                 <tr>
                     <th>Owner</th>
                     <th>Reg. Plate</th>
-                    @*<th>Vehicle Type</th>
-                    <th>Checked in</th>*@
+                    <th>Vehicle Type</th>
+                    @*<th>Checked in</th>*@
                     <th></th>
                 </tr>
                 <tr ng-repeat="vehicle in data track by $index">
                     <td>{{vehicle.Owner.Fname}}</td>
                     <td>{{vehicle.RegistrationPlate}}</td>
-                    @*<td>{{vehicle.VehicleType}}</td>
-                    <td>{{vehicle.CheckIns}}</td>*@
+                    <td>{{vehicle.VehicleType.Type}}</td>
+                    @*<td>{{vehicle.CheckIns}}</td>*@
                     <td>
                         <a href="/Vehicles/Edit?id={{vehicle.ID}}">Edit</a> |
                         <a href="/Vehicles/Details?id={{vehicle.ID}}">Details</a> |

@@ -9,7 +9,9 @@
         $scope.getOwner = getOwner;
         $scope.getOwners = getOwners;
         $scope.getVehicleTypes = getVehicleTypes;
-        $scope.sendData = sendData;
+        $scope.createVehicle = createVehicle;
+        $scope.editVehicle = editVehicle;
+        $scope.deleteVehicle = deleteVehicle;
 
         vehicleType = {
             ID: 0,
@@ -66,7 +68,7 @@
                     debugger;
                 });
         }
-        function sendData() {
+        function createVehicle() {
             $scope.vehicle.VehicleTypeID = $scope.selectedVehicleType;
             $scope.vehicle.OwnerID = $scope.selectedOwner;
             $scope.vehicle.RegistrationPlate = $scope.vehicleRegistrationPlate;
@@ -74,6 +76,26 @@
             .then(function (response) {
                 $window.location.href = "/Vehicles/Index";
             });
+        }
+
+        function editVehicle(id) {
+            var data = $.param({
+                id: parseInt(id),
+                ownerID: parseInt($scope.vehicle.OwnerID),
+                vehicleTypeID: parseInt($scope.vehicle.VehicleTypeID),
+                regNum: $scope.vehicle.RegistrationPlate
+            });
+            $http.put("/api/vehiclesAPI/put?" + data)
+                .then(function (response) {
+                    $window.location.href = "/Vehicles/Index";
+                });
+        }
+
+        function deleteVehicle(id) {
+            $http.delete("/api/vehicleAPI/delete?id=" + id)
+                .then(function (response) {
+                    $window.location.href = "/Vehicles/Index";
+                })
         }
     }]);
 }());
