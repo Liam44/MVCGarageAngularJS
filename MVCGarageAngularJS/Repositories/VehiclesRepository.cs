@@ -55,6 +55,11 @@ namespace MVCGarageAngularJS.Repositories
             SaveChanges();
         }
 
+        public IEnumerable<Vehicle> GetVehiclesWithOwners()
+        {
+            return db.Vehicles.Include(v => v.Owner).Include("VehicleType");
+        }
+
         private void SaveChanges()
         {
             db.SaveChanges();
