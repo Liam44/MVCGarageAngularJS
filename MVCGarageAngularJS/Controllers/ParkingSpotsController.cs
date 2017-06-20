@@ -1,13 +1,12 @@
-﻿using System.Web.Mvc;
+﻿using MVCGarageAngularJS.ViewModels.ParkingSpots;
+using System.Web.Mvc;
 
-namespace CodeAlongAJAX.Controllers
+namespace MVCGarageAngularJS.Controllers
 {
     public class ParkingSpotsController : Controller
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
-
             return View();
         }
 
@@ -33,6 +32,20 @@ namespace CodeAlongAJAX.Controllers
         public ActionResult Delete(int? id)
         {
             return View(id);
+        }
+
+        [HttpGet]
+        public ActionResult SelectAParkingSpot(int? vehicleId, bool checkIn)
+        {
+            if (vehicleId == null)
+                vehicleId = 1;
+
+            // Allows the user to select an available parking spot (if any), depending on the type of vehicle
+            return View(new SelectAParkingSpotVM
+            {
+                SelectedVehicle = new VehiclesAPIController().Vehicle((int)vehicleId),
+                CheckIn = checkIn
+            });
         }
     }
 }

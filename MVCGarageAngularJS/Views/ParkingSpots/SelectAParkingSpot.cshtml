@@ -1,0 +1,80 @@
+﻿@model MVCGarageAngularJS.ViewModels.ParkingSpots.SelectAParkingSpotVM
+
+@{
+    ViewBag.Title = "Select A Parking Spot";
+}
+<div class="header jumbotron">
+    <h1>Select a parking spot</h1>
+    <hr />
+    <p>This is where you select a parking spot</p>
+</div>
+
+<div ng-app="parkingSpots" ng-controller="parkingSpotsController">
+    <div ng-init="getAvailableParkingSpots(@Model.SelectedVehicle.ID, @Model.CheckIn)">
+
+        <div ng-hide="data" class="about-body-text" style="color: white; margin-top: 10em; text-align: center;">
+            <h4>All our parking spots are unfortunately taken!</h4>
+            <hr />
+        </div>
+
+        <div ng-show="data" class="about-body-text" style="color: white; margin-top: 10em; text-align: center;">
+            <div class="index-table">
+                <table>
+                    <tr>
+                        <th>
+                            Registration Plate
+                        </th>
+                        <th>
+                            Owner
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            {{data.SelectedVehicle.RegistrationPlate}}
+                        </td>
+                        <td>
+                            {{data.SelectedVehicle.Owner.LName}} {{data.SelectedVehicle.Owner.FName}}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <form>
+                <div class="index-table">
+                    <table>
+                        <tr>
+                            <th>
+                                @* Blank for the radiobutton *@
+                            </th>
+                            <th>
+                                Identifiant
+                            </th>
+                        </tr>
+                        <tr ng-repeat="parkingSpot in data.ParkingSpots track by $index">
+                            <td>
+                                <input id="ParkingSpotID" name="ParkingSpotID" type="radio" value="{{parkingSpot.ID}}" />
+                            </td>
+                            <td>
+                                {{parkingSpot.Label}}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div style="text-align: center; display: block; margin-bottom: 3em; color: white; font-size: 2em;">
+                    <input name="submit-button"
+                           type="submit"
+                           style="font-weight:bold;margin:10px 0 10px 0;"
+                           value="Choose the selected Parking Spot"
+                           class="btn btn-default"
+                           ng-click="selectAParkingSpot()" />
+                </div>
+            </form>
+        </div>
+
+        <div style="text-align: center; display: block; margin-bottom: 3em; color: white; font-size: 2em;">
+            @Html.ActionLink("Back to List", "DisplayAllVehicles", "Garage")
+        </div>
+
+    </div>
+</div>

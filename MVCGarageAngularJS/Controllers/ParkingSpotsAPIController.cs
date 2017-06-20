@@ -1,5 +1,6 @@
 ﻿using MVCGarageAngularJS.Models;
 using MVCGarageAngularJS.Repositories;
+using MVCGarageAngularJS.ViewModels.ParkingSpots;
 using System.Collections.Generic;
 using System.Net;
 using System.Web.Http;
@@ -12,9 +13,20 @@ namespace MVCGarageAngularJS.Controllers
         private ParkingSpotsRepository db = new ParkingSpotsRepository();
 
         // GET: api/ParkingSpotsAPI
-        public IEnumerable<ParkingSpot> Get()
+        public IEnumerable<ParkingSpot> GetParkingSpots()
         {
             return db.ParkingSpots();
+        }
+
+        // GET: api/ParkingSpotsAPI
+        public SelectAParkingSpotVM GetAvailableParkingSpots(int vehicleId, bool checkIn)
+        {
+            return new SelectAParkingSpotVM
+            {
+                ParkingSpots = new CheckInsParkingSpots().AvailableParkingSpots(),
+                CheckIn = checkIn,
+                SelectedVehicle = new VehiclesAPIController().Vehicle(vehicleId)
+            };
         }
 
         // GET: api/ParkingSpotsAPI/5
@@ -85,6 +97,11 @@ namespace MVCGarageAngularJS.Controllers
             db.Delete(id);
 
             return Ok(parkingSpot);
+        }
+
+        public IHttpActionResult SelectAParkingSpot(int vehicleId, int parkingSpotId)
+        {
+            return Ok();
         }
 
         protected override void Dispose(bool disposing)

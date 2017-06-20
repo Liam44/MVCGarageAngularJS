@@ -151,7 +151,12 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\AllowCrossOriginRequests.cs" />
+    <Compile Include="Controllers\CheckInsAPIController.cs" />
+    <Compile Include="Controllers\CheckInsController.cs" />
+    <Compile Include="Controllers\CheckInsParkingSpots.cs" />
+    <Compile Include="Controllers\GarageAPIController.cs" />
+    <Compile Include="Controllers\GarageController.cs" />
+    <Compile Include="Controllers\InnerJoinResult.cs" />
     <Compile Include="Controllers\OwnersAPIController.cs" />
     <Compile Include="Controllers\ParkingSpotsAPIController.cs" />
     <Compile Include="Controllers\VehiclesAPIController.cs" />
@@ -232,7 +237,6 @@
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="Content\fonts\Drugs.otf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\owners.js" />
     <Content Include="Scripts\vehicles.js" />
     <Content Include="Scripts\parkingSpots.js" />
     <Content Include="Scripts\vehicleTypes.js" />
@@ -272,6 +276,9 @@
     <Content Include="Views\ParkingSpots\Details.cshtml" />
     <Content Include="Views\ParkingSpots\Edit.cshtml" />
     <Content Include="Views\ParkingSpots\Delete.cshtml" />
+    <Content Include="Views\CheckIns\Create.cshtml" />
+    <Content Include="Views\ParkingSpots\SelectAParkingSpot.cshtml" />
+    <Content Include="Views\Garage\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

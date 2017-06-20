@@ -42,26 +42,12 @@
                 fee: parseFloat($scope.vehicleType.Fee.replace(",", "."))
             });
             $http.put("/api/vehicleTypesAPI/put?" + data)
-                .success(function (data, status, headers) {
-                    $scope.ServerResponse = data;
-                })
-                .error(function (data, status, header, config) {
-                    $scope.ServerResponse = htmlDecode("Data: " + data +
-                        "\n\n\n\nstatus: " + status +
-                        "\n\n\n\nheaders: " + header +
-                        "\n\n\n\nconfig: " + config);
-                })
                 .then(function (response) {
-                    $window.location.href = "/VehicleTypes/Index";
-                })
-                ;
-            //{
-            //        debugger;
-            //        $scope.vehicleType.Type = undefined;
-            //        $scope.vehicleType.Fee = undefined;
+                    $scope.vehicleType.Type = undefined;
+                    $scope.vehicleType.Fee = undefined;
 
-            //        $window.location.href = "/VehicleTypes/Index";
-            //    });
+                    $window.location.href = "/VehicleTypes/Index";
+                });
         }
 
         function deleteVehicleType(id) {

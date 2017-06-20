@@ -18,6 +18,11 @@ namespace MVCGarageAngularJS.Controllers
     {
         private OwnersRepository db = new OwnersRepository();
 
+        internal Owner Owner(int id)
+        {
+            return db.Find(id);
+        }
+
         // GET: api/OwnersAPI
         public IEnumerable<Owner> Get()
         {
