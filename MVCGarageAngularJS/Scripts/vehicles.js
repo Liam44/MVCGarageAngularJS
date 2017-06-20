@@ -10,9 +10,16 @@
         $scope.getOwners = getOwners;
         $scope.sendData = sendData;
 
+        owner = {
+            ID: 0,
+            Fname: "",
+            Lname: "",
+            Gender: "",
+            LicenseNumber: ""
+        }
 
         $scope.vehicle = { ID: 0, RegistrationPlate: "" };
-        $scope.owner = { ID: 0, Name: "" };
+        $scope.owner = owner;  
 
         function getVehicles() {
             $http.get("/api/vehiclesAPI/get")
@@ -30,9 +37,10 @@
         }
 
         function getOwners() {
-            $http.get("api/ownersAPI/get")
+            $http.get("/api/ownersAPI/get")
                 .then(function (response) {
                     $scope.ownerData = response.data;
+                    debugger;
                 });
         }
 
@@ -47,12 +55,7 @@
         function sendData() {
             $http.post("/api/vehiclesAPI/post", JSON.stringify($scope.vehicle))
             .then(function (response) {
-                var tmp = angular.copy($scope.vehicle);
-                $scope.data.push(tmp);
-                $scope.vehicle.Owner = undefined;
-                $scope.vehicle.VehicleType = undefined;
-                $scope.vehicle.CheckIns = undefined;
-
+                
             });
         }
     }]);
