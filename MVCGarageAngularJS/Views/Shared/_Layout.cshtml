@@ -23,19 +23,26 @@
                 <form id="frmsearch" action="~/Garage/Search" methond="get">
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Vehicles management<span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Data management<span class="caret"></span></a>
                             <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Manage owners", "Index", "Owners")</li>
                                 <li>@Html.ActionLink("All vehicles", "DisplayAllVehicles", "Garage")</li>
                                 <li>@Html.ActionLink("Parked vehicles", "DisplayParkedVehicles", "Garage")</li>
-                                <li>@Html.ActionLink("Check in", "CheckInVehicle", "Vehicles")</li>
-                                <li>@Html.ActionLink("Check out", "CheckOutVehicle", "Vehicles")</li>
+                                <li>@Html.ActionLink("Manage parking spots", "Index", "ParkingSpots")</li>
+                                <li>@Html.ActionLink("Manage vehicle types", "Index", "VehicleTypes")</li>
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Parking places management<span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Check in/Book a parking spot<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Manage parking spots", "Index", "ParkingSpots")</li>
+                                <li>@Html.ActionLink("Check in", "CheckInVehicle", "Vehicles")</li>
                                 <li>@Html.ActionLink("Book a spot", "BookAParkingSpot", "Vehicles")</li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Check out/Unbook a parking spot<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Check out", "CheckOutVehicle", "Vehicles")</li>
                                 <li>@Html.ActionLink("Unbook a spot", "UnbookParkingSpot", "Vehicles")</li>
                             </ul>
                         </li>
