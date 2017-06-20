@@ -4,45 +4,75 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<div class="form-horizontal about-body-text" style="color: white; font-size: 1em;">
+    <div ng-app="vehicleTypes" ng-controller="vehicleTypesController">
+        <div class="header jumbotron">
+            <h1>Edit a Vehicle Type</h1>
+            <hr />
+            <p>This is where you edit a vehicle type</p>
+            <p style="color:red">{{ ServerResponse }}</p>
+        </div>
 
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>VehicleType</h4>
+        <h2 style="text-align:center;">Vehicle Type</h2>
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.ID)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @if (Model == null)
+        {
+            <h1 style="text-align: center; color: white;">No vehicle type found!</h1>
+        }
+        else
+        {
+            <div ng-init="getVehicleType(@Model)">
+                <div ng-show="vehicleType.Type">
+                    <form>
+                        @Html.AntiForgeryToken()
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Fee, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Fee, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Fee, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                @Html.Label("Vehicle Type", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    <input type="text"
+                                           class="form-control"
+                                           id="vehicleType.Type"
+                                           placeholder="Enter the new vehicle type"
+                                           ng-model="vehicleType.Type"
+                                           style="width:450px"
+                                           required />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Default Fee", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    <input type="text"
+                                           class="form-control"
+                                           id="vehicleType.Fee"
+                                           placeholder="Enter the default fee"
+                                           ng-model="vehicleType.Fee"
+                                           style="width:200px"
+                                           required />
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" ng-click="edit(@Model)" value="Edit" class="btn btn-default" />
+                                </div>
+                            </div>
+                            <p style="color:red">{{ ServerResponse }}</p>
+                        </div>
+                    </form>
+                </div>
+
+                <div ng-hide="vehicleType.Type">
+                    <h1 style="text-align: center; color: white;">No vehicle type found!</h1>
+                </div>
             </div>
+        }
+
+        <div style="text-align:center; display:block; font-size: 2em; margin-bottom: 3em; color: white;">
+            @Html.ActionLink("Back to List", "Index")
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
 
 @section Scripts {

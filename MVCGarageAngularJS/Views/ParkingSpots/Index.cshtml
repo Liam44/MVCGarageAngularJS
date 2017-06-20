@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Parking Spots";
+}
+
+<div ng-app="parkingSpots" ng-controller="parkingSpotsController">
+    <div class="jumbotron header" ng-init="getParkingSpots()">
+        <h1>Parking Spots</h1>
+        <hr />
+        <p>This is where you can look at the registered parking spots.</p>
+    </div>
+
+    <p style="font-size: 2em; text-align: center;">
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <div class="index-table" style="margin-bottom: 3em;">
+        <table>
+            <tr>
+                <th>
+                    Identifiant
+                </th>
+                <th></th>
+            </tr>
+            <tr ng-repeat="parkingSpot in data track by $index">
+                <td>
+                    {{parkingSpot.Label}}</
+                </td>
+                <td>
+                    <a href="/ParkingSpots/Edit?id={{parkingSpot.ID}}">Edit</a> |
+                    <a href="/ParkingSpots/Details?id={{parkingSpot.ID}}">Details</a> |
+                    <a href="/ParkingSpots/Delete?id={{parkingSpot.ID}}">Delete</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

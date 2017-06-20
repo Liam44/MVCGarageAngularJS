@@ -34,8 +34,13 @@ namespace MVCGarageAngularJS.Repositories
 
         public void Delete(int typeId)
         {
-            db.VehicleTypes.Remove(VehicleType(typeId));
-            db.SaveChanges();
+            VehicleType vt = VehicleType(typeId);
+
+            if (vt != null)
+            {
+                db.VehicleTypes.Remove(VehicleType(typeId));
+                db.SaveChanges();
+            }
         }
 
         public void Edit(VehicleType vehicleType)

@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -152,8 +153,10 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AllowCrossOriginRequests.cs" />
     <Compile Include="Controllers\OwnersAPIController.cs" />
+    <Compile Include="Controllers\ParkingSpotsAPIController.cs" />
     <Compile Include="Controllers\VehiclesAPIController.cs" />
     <Compile Include="Controllers\VehiclesController.cs" />
+    <Compile Include="Controllers\ParkingSpotsController.cs" />
     <Compile Include="Controllers\VehicleTypesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\VehicleTypesAPIController.cs" />
@@ -231,6 +234,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\owners.js" />
     <Content Include="Scripts\vehicles.js" />
+    <Content Include="Scripts\parkingSpots.js" />
     <Content Include="Scripts\vehicleTypes.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -257,11 +261,17 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\VehicleTypes\Details.cshtml" />
     <Content Include="Views\VehicleTypes\Edit.cshtml" />
+    <Content Include="Views\VehicleTypes\Delete.cshtml" />
     <Content Include="Views\Vehicles\Create.cshtml" />
     <Content Include="Views\Vehicles\Delete.cshtml" />
     <Content Include="Views\Vehicles\Details.cshtml" />
     <Content Include="Views\Vehicles\Edit.cshtml" />
     <Content Include="Views\Vehicles\Index.cshtml" />
+    <Content Include="Views\ParkingSpots\Index.cshtml" />
+    <Content Include="Views\ParkingSpots\Create.cshtml" />
+    <Content Include="Views\ParkingSpots\Details.cshtml" />
+    <Content Include="Views\ParkingSpots\Edit.cshtml" />
+    <Content Include="Views\ParkingSpots\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

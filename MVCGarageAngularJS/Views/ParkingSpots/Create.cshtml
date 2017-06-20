@@ -1,0 +1,43 @@
+﻿<div ng-app="parkingSpots" ng-controller="parkingSpotsController">
+
+    <div class="header jumbotron">
+        <h1>Create a Parking Spot</h1>
+        <hr />
+        <p>This is where you create a new parking spot</p>
+        <p style="color:red">{{errorMessage}}</p>
+    </div>
+
+    <div class="form-horizontal about-body-text" style="color: white; font-size: 1em;">
+        <h2 style="text-align:center;">Parking Spot</h2>
+        <hr />
+
+        <form>
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <div class="form-group">
+                    @Html.Label("Identifiant", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="text"
+                               class="form-control"
+                               id="parkingSpot.Label"
+                               placeholder="Enter the new identifiant"
+                               ng-model="parkingSpot.Label"
+                               style="width:450px"
+                               required />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" ng-click="createParkingSpot()" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div style="text-align:center; display:block; font-size: 2em; margin-bottom: 3em; color: white;">
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </div>
+</div>

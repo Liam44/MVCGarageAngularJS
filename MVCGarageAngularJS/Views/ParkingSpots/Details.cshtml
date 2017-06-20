@@ -1,0 +1,54 @@
+﻿@model int?
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="header jumbotron">
+    <h2>Details</h2>
+    <hr />
+    <p>This is where you can view details for a parking spot</p>
+</div>
+
+<div ng-app="parkingSpots" ng-controller="parkingSpotsController">
+    @if (Model == null)
+    {
+        <h1 style="text-align: center; color: white;">No parking spot found!</h1>
+    }
+    else
+    {
+        <div ng-init="getParkingSpot(@Model)">
+            <div ng-show="parkingSpot.Label">
+                <h1 style="text-align: center; color: white;">Parking Spot</h1>
+                <hr />
+                <div class="index-table">
+                    <table>
+                        <tr>
+                            <th>
+                                Identifiant
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                {{parkingSpot.Label}}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div ng-hide="parkingSpot.Label">
+                <h1 style="text-align: center; color: white;">No parking spot found!</h1>
+            </div>
+        </div>
+    }
+
+    <div style="text-align:center; display:block; font-size: 2em; margin-bottom: 3em; color: white;">
+        <p>
+            <span ng-show="parkingSpot.Type">
+                <a href="/ParkingSpots/Edit?id={{parkingSpot.ID}}">Edit</a><text> | </text>
+            </span>
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+</div>

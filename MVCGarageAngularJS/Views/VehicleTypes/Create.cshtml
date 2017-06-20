@@ -1,29 +1,55 @@
 ﻿<div ng-app="vehicleTypes" ng-controller="vehicleTypesController">
-    <div class="jumbotron" ng-init="getData()">
-        <h1>Learning Angular with WebAPI</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Vehicle type</th>
-                    <th>Default fee</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="vehicleType in data track by $index">
-                    <td>{{vehicleType.Type}}</td>
-                    <td>{{vehicleType.Fee}}</td>
-                </tr>
-            </tbody>
-        </table>
+
+    <div class="header jumbotron">
+        <h1>Create a Vehicle Type</h1>
+        <hr />
+        <p>This is where you create a new vehicle type</p>
+        <p style="color:red">{{errorMessage}}</p>
     </div>
 
-    <form>
-        <div>
-            <input type="text" id="name" placeholder="Enter the new vehicle type" ng-model="vehicleType.Type" style="width:450px" />
+    <div class="form-horizontal about-body-text" style="color: white; font-size: 1em;">
+        <h2 style="text-align:center;">Vehicle Type</h2>
+        <hr />
+
+        <form>
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <div class="form-group">
+                    @Html.Label("Vehicle Type", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="text"
+                               class="form-control"
+                               id="vehicleType.Type"
+                               placeholder="Enter the new vehicle type"
+                               ng-model="vehicleType.Type"
+                               style="width:450px"
+                               required />
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Default Fee", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="text"
+                               class="form-control"
+                               id="vehicleType.Fee"
+                               placeholder="Enter the default fee"
+                               ng-model="vehicleType.Fee"
+                               style="width:200px"
+                               required />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" ng-click="createVehicleType()" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div style="text-align:center; display:block; font-size: 2em; margin-bottom: 3em; color: white;">
+            @Html.ActionLink("Back to List", "Index")
         </div>
-        <div>
-            <input type="number" id="age" placeholder="Enter the default fee" ng-model="vehicleType.Fee" style="width:200px" />
-        </div>
-        <button ng-click="sendData()">Send Data</button>
-    </form>
+    </div>
 </div>
