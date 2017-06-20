@@ -11,6 +11,7 @@ using System.Web.Http.Description;
 using MVCGarageAngularJS.DataAccess;
 using MVCGarageAngularJS.Models;
 using MVCGarageAngularJS.Repositories;
+using Newtonsoft.Json;
 
 namespace MVCGarageAngularJS.Controllers
 {
@@ -23,7 +24,7 @@ namespace MVCGarageAngularJS.Controllers
             Vehicle v = db.Vehicle(id);
 
             if (v != null)
-                v.Owner = new OwnersAPIController().Owner(v.OwnerID);
+              v.Owner = new OwnersAPIController().Owner(v.OwnerID);
 
             return v;
         }
@@ -31,7 +32,7 @@ namespace MVCGarageAngularJS.Controllers
         // GET: api/VehiclesControllerAPI
         public IEnumerable<Vehicle> Get()
         {
-            return db.Vehicles();
+            return db.GetVehiclesWithOwners();
         }
 
         // GET: api/VehiclesControllerAPI/5

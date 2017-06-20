@@ -16,14 +16,14 @@
         <div class="index-table" style="margin-bottom: 3em;">
             <table>
                 <tr>
-                    @*<th>Owner</th>*@
+                    <th>Owner</th>
                     <th>Reg. Plate</th>
                     @*<th>Vehicle Type</th>
                     <th>Checked in</th>*@
                     <th></th>
                 </tr>
                 <tr ng-repeat="vehicle in data track by $index">
-                    @*<td>{{vehicle.Owner}}</td>*@
+                    <td>{{vehicle.Owner.Fname}}</td>
                     <td>{{vehicle.RegistrationPlate}}</td>
                     @*<td>{{vehicle.VehicleType}}</td>
                     <td>{{vehicle.CheckIns}}</td>*@
