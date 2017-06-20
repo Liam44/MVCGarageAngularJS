@@ -1,4 +1,4 @@
-﻿<div ng-app="vehicles" ng-controller="vehicleController" ng-init="getOwners()">
+﻿<div ng-app="vehicles" ng-controller="vehicleController" ng-init="getOwners()" style="margin-bottom: 3em;">
     <div class="jumbotron header">
         <h1>Learning Angular with WebAPI</h1>
         <hr />
@@ -7,11 +7,17 @@
 
     <form>
         <div>
-            <input type="text" id="name" placeholder="Enter the Reg. Plate number" ng-model="vehicle.RegistrationPlate" style="width:450px" />
+            <input required type="text" id="name" placeholder="Enter the Reg. Plate number" ng-model="vehicleRegistrationPlate" style="width:450px" />
         </div>
         <div ng-init="getOwners()">
-            <select ng-model="ownerData">
-                <option ng-repeat="owner in ownerData track by $index" value="{{owner.Fname}}">{{owner.Fname}}</option>
+            <select ng-model="selectedOwner" required>
+                <option ng-repeat="owner in ownerData track by $index" value="{{owner.ID}}">{{owner.Fname}}</option>
+            </select>
+        </div>
+
+        <div ng-init="getVehicleTypes()">
+            <select ng-model="selectedVehicleType" required>
+                <option ng-repeat="vehicleType in vehicleTypes track by $index" value="{{vehicleType.ID}}">{{vehicleType.Type}}</option>
             </select>
         </div>
         <button ng-click="sendData()">Send Data</button>

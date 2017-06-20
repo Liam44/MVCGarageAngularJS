@@ -29,8 +29,6 @@
         function createVehicleType() {
             $http.post("/api/vehicleTypesAPI/post", JSON.stringify($scope.vehicleType))
                 .then(function (response) {
-                    $scope.vehicleType.Type = undefined;
-                    $scope.vehicleType.Fee = undefined;
 
                     $window.location.href = "/VehicleTypes/Index";
                 });
