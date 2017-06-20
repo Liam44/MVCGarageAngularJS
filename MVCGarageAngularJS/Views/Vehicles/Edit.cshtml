@@ -1,56 +1,83 @@
-﻿@model MVCGarageAngularJS.Models.Vehicle
+﻿@model int?
 
 @{
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<div class="form-horizontal about-body-text" style="color: white; font-size: 1em;">
+    <div ng-app="vehicles" ng-controller="vehicleController">
+        <div class="header jumbotron">
+            <h1>Edit a Vehicle</h1>
+            <hr />
+            <p>This is where you edit a vehicle</p>
+            <p style="color:red">{{ ServerResponse }}</p>
+        </div>
 
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Vehicle</h4>
+        <h2 style="text-align:center;">Vehicle</h2>
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.ID)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.OwnerID, "OwnerID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("OwnerID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.OwnerID, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @if (Model == null)
+        {
+            <h1 style="text-align: center; color: white;">No vehicle found!</h1>
+        }
+        else
+        {
+            <div ng-init="getVehicle(@Model)">
+                <div ng-show="vehicle.RegistrationPlate">
+                    <form>
+                        @Html.AntiForgeryToken()
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.RegistrationPlate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.RegistrationPlate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.RegistrationPlate, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                @Html.Label("Registration Plate", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    <input type="text"
+                                           class="form-control"
+                                           id="vehicle.RegistrationPlate"
+                                           placeholder="Enter a new Registraion Plate Number"
+                                           ng-model="vehicle.RegistrationPlate"
+                                           style="width:450px"
+                                           required />
+                                </div>
+                            </div>
+                            <div class="form-group" ng-init="getOwners()">
+                                @Html.Label("Owner", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10" style="color: black;">
+                                    <select ng-model="vehicle.Owner">
+                                        <option ng-repeat="owner in ownerData track by $index" value="{{owner.ID}}">{{owner.Fname}}</option>
+                                    </select>
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.VehicleTypeID, "VehicleTypeID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("VehicleTypeID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.VehicleTypeID, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                            <div class="form-group" ng-init="getVehicleTypes()">
+                                @Html.Label("Vehicle Type", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10" style="color: black;">
+                                    <select ng-model="vehicle.VehicleType">
+                                        <option ng-repeat="vehicleType in vehicleTypes track by $index" value="{{vehicleType.ID}}">{{vehicleType.Type}}</option>
+                                    </select>
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" ng-click="editVehicle(@Model)" value="Edit" class="btn btn-default" />
+                                </div>
+                            </div>
+                            <p style="color:red">{{ ServerResponse }}</p>
+                        </div>
+                    </form>
+                </div>
+
+                <div ng-hide="vehicle.RegistrationPlate">
+                    <h1 style="text-align: center; color: white;">No vehicle type found!</h1>
+                </div>
             </div>
+        }
+
+        <div style="text-align:center; display:block; font-size: 2em; margin-bottom: 3em; color: white;">
+            @Html.ActionLink("Back to List", "Index")
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
 
 @section Scripts {
